@@ -1,0 +1,29 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2f805fd5b5de445b6a5a723a43745742, type: 3}
+  m_Name: BallistaTower
+  m_EditorClassIdentifier: 
+  nameString: Ballista
+  towerPrefab: {fileID: 6677128618542446823, guid: 8ed99bbbe2ee84e929f71789bef63986, type: 3}
+  ghostPrefab: {fileID: 5690406493745839861, guid: afd847bb9ee994c14a4cf59de646ef84, type: 3}
+  resourceData:
+    timerMax: 0
+    resourceType: {fileID: 0}
+    resourceDetectionRadius: 0
+    maxResourceAmount: 0
+  sprite: {fileID: 21300000, guid: c7015f7c184d946a4b108ec4839642e1, type: 3}
+  resourceCostToBuild:
+  - resourceType: {fileID: 11400000, guid: df7230bce252e4f9e9927bc4af420593, type: 2}
+    amount: 10
+  - resourceType: {fileID: 11400000, guid: 04f71d09d55974f3e9e30745e9e1a3b7, type: 2}
+    amount: 20
+  healthAmountMax: 400
