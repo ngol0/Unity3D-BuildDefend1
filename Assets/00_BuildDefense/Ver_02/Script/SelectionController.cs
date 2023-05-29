@@ -2,9 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ActionController : MonoBehaviour
+public class SelectionController : MonoBehaviour
 {
     [SerializeField] LayerMask interactableMask;
+    [SerializeField] InteractableEvent OnItemSelected;
 
     Interactable selectedItem;
     
@@ -18,6 +19,11 @@ public class ActionController : MonoBehaviour
 
     private void TrySelectItem()
     {
+        if (selectedItem != null)
+        {
+            selectedItem = null;
+        }
+
         //select item
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
         RaycastHit hitData;
@@ -26,12 +32,10 @@ public class ActionController : MonoBehaviour
             if (hitData.transform.TryGetComponent<Interactable>(out Interactable item))
             {
                 selectedItem = item;
+                selectedItem.HandleSelection();
             }
         }
-    }
 
-    private void UpdateSelectionUI()
-    {
-
+        OnItemSelected?.Raise(selectedItem);
     }
 }
