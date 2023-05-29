@@ -6,13 +6,18 @@ public class UnitActionController : MonoBehaviour
 {
     Unit selectedUnit;
 
-    public void SetSelectedUnit(Unit unit)
+    public void SetSelectedUnit(Interactable item)
     {
-        selectedUnit = unit;
+        if (item != null && item.IsMoveable)
+        {
+            selectedUnit = item as Unit;
+            return;
+        }
+        selectedUnit = null;
     }
 
     public void MoveUnit()
     {
-        selectedUnit.Move();
+        if (selectedUnit!=null) selectedUnit.Move();
     }
 }

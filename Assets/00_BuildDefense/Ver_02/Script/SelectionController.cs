@@ -19,11 +19,6 @@ public class SelectionController : MonoBehaviour
 
     private void TrySelectItem()
     {
-        if (selectedItem != null)
-        {
-            selectedItem = null;
-        }
-
         //select item
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
         RaycastHit hitData;
@@ -32,10 +27,15 @@ public class SelectionController : MonoBehaviour
             if (hitData.transform.TryGetComponent<Interactable>(out Interactable item))
             {
                 selectedItem = item;
-                selectedItem.HandleSelection();
             }
         }
 
+        OnItemSelected?.Raise(selectedItem);
+    }
+
+    public void CancelItemSelection()
+    {
+        selectedItem = null;
         OnItemSelected?.Raise(selectedItem);
     }
 }

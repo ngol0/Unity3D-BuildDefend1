@@ -4,11 +4,6 @@ using UnityEngine;
 
 public class Unit : Interactable
 {
-    public override void HandleSelection()
-    {
-        //OnUnitSelected?.Raise(this);
-    }
-
     private void Update() 
     {
         
@@ -16,6 +11,8 @@ public class Unit : Interactable
 
     public void Move()
     {
-
+        Debug.Log(name + "moving");
     }
+
+    public override bool IsMoveable => true;
 }
