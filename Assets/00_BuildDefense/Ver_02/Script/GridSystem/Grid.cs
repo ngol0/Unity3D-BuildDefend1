@@ -31,7 +31,7 @@ public class Grid
 
                 //create grid ui
                 GridItemUI gridItemUI = 
-                    GameObject.Instantiate<GridItemUI>(gridItemPrefab, GridToWorldPos(gridPos), Quaternion.identity, root);
+                    GameObject.Instantiate<GridItemUI>(gridItemPrefab, GetWorldPosition(gridPos), Quaternion.identity, root);
                 gridItemUI.SetGridItem(GetGridItem(gridPos));
             }
         }
@@ -42,12 +42,12 @@ public class Grid
         return gridItemArray[gridPos.x, gridPos.z];
     }
 
-    public Vector3 GridToWorldPos(GridPosition gridPos)
+    public Vector3 GetWorldPosition(GridPosition gridPos)
     {
         return new Vector3(gridPos.x, 0, gridPos.z) * cellSize;
     }
 
-    public GridPosition WorldToGridPos(Vector3 worldPos)
+    public GridPosition GetGridPosition(Vector3 worldPos)
     {
         return new GridPosition(
             Mathf.RoundToInt(worldPos.x/cellSize), 

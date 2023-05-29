@@ -7,7 +7,7 @@ using UnityEngine;
 public class SOPlaceableObj : ScriptableObject 
 {
     public string objName;
-    public Interactable prefab;
+    public InteractableObject prefab;
 
     [TextArea(3,3)]
     public string description;

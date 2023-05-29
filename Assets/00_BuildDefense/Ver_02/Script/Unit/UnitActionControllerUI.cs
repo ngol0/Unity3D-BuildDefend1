@@ -5,7 +5,7 @@ using UnityEngine;
 public class UnitActionControllerUI : MonoBehaviour
 {
     [SerializeField] GameObject guiMain;
-    public void SetUnitControllerActive(Interactable item)
+    public void SetUnitControllerActive(InteractableObject item)
     {
         if (item!=null && item.IsMoveable)
         {

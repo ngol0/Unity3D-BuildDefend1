@@ -4,13 +4,13 @@ using UnityEngine;
 
 public class SelectedUI : MonoBehaviour
 {   
-    [SerializeField] Interactable item;
+    [SerializeField] InteractableObject item;
      private void Start() 
     {
         gameObject.SetActive(false);
     }
 
-    public void SetSelectionUI(Interactable selectedItem)
+    public void SetSelectionUI(InteractableObject selectedItem)
     {
         if (item == selectedItem) gameObject.SetActive(true);
         if (item == null || item != selectedItem) gameObject.SetActive(false);

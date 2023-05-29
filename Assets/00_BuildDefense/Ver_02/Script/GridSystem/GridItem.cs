@@ -6,7 +6,7 @@ public class GridItem
 {
     private Grid gridSystem;
     private GridPosition gridPosition;
-    Interactable item;
+    InteractableObject item;
 
     public GridItem(Grid gridSystem, GridPosition gridPosition)
     {
@@ -14,7 +14,7 @@ public class GridItem
         this.gridPosition = gridPosition;
     }
 
-    public void SetItem(Interactable item)
+    public void SetInteractableItem(InteractableObject item)
     {
         this.item = item;
     }
@@ -22,5 +22,11 @@ public class GridItem
     public bool IsPlaceable()
     {
         return item==null;
+    }
+
+    public override string ToString()
+    {
+        if (item!=null) return "Unit";
+        else return "";
     }
 }

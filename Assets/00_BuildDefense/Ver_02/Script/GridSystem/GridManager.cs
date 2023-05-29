@@ -14,7 +14,7 @@ public class GridManager : MonoBehaviour
     [SerializeField] GridItemUI gridItemPrefab;
 
     [Header("Placeable items")]
-    [SerializeField] Interactable activeItem;
+    [SerializeField] InteractableObject activeItem;
 
     Grid gridSystem;
 
@@ -29,7 +29,7 @@ public class GridManager : MonoBehaviour
         if (Input.GetMouseButtonDown(0)) { TryPlaceItemAtGrid(); }
     }
 
-    public void SetActiveItem(Interactable activeItem)
+    public void SetActiveItem(InteractableObject activeItem)
     {
         this.activeItem = activeItem;
     }
@@ -43,13 +43,14 @@ public class GridManager : MonoBehaviour
         RaycastHit hitData;
         if (Physics.Raycast(ray, out hitData, float.MaxValue, gridMask))
         {
-            GridPosition gridPos = gridSystem.WorldToGridPos(hitData.transform.position);
+            GridPosition gridPos = gridSystem.GetGridPosition(hitData.transform.position);
             GridItem gridItem = GetItemAtGrid(gridPos);
 
             if(gridItem.IsPlaceable())
             {
-                Interactable item = Instantiate(activeItem, gridSystem.GridToWorldPos(gridPos), Quaternion.identity);
-                gridItem.SetItem(item);
+                InteractableObject item = Instantiate(activeItem, gridSystem.GetWorldPosition(gridPos), Quaternion.identity);
+                gridItem.SetInteractableItem(item);
+                item.SetGridSystem(this, gridPos);
             }
         }
 
@@ -59,16 +60,16 @@ public class GridManager : MonoBehaviour
     public void RemoveItemAtGrid(GridPosition gridPosition)
     {
         GridItem gridItem = GetItemAtGrid(gridPosition);
-        gridItem.SetItem(null);
+        gridItem.SetInteractableItem(null);
     }
 
-    public void SetItemAtGrid(Interactable item, GridPosition gridPosition)
+    public void SetItemAtGrid(InteractableObject item, GridPosition gridPosition)
     {
         GridItem gridItem = GetItemAtGrid(gridPosition);
-        gridItem.SetItem(item);
+        gridItem.SetInteractableItem(item);
     }
 
-    public void ItemMoveGridPosition(Interactable item, GridPosition fromGridPos, GridPosition toGridPos)
+    public void ItemMoveGridPosition(InteractableObject item, GridPosition fromGridPos, GridPosition toGridPos)
     {
         RemoveItemAtGrid(fromGridPos);
         SetItemAtGrid(item, toGridPos);
@@ -77,5 +78,10 @@ public class GridManager : MonoBehaviour
     public GridItem GetItemAtGrid(GridPosition gridPosition)
     {
         return gridSystem.GetGridItem(gridPosition);
+    }
+
+    public GridPosition GetGridPosition(Vector3 worldPos)
+    {
+        return gridSystem.GetGridPosition(worldPos);
     }
 }

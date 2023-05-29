@@ -7,7 +7,7 @@ public class SelectionController : MonoBehaviour
     [SerializeField] LayerMask interactableMask;
     [SerializeField] InteractableEvent OnItemSelected;
 
-    Interactable selectedItem;
+    InteractableObject selectedItem;
     
     private void Update()
     {
@@ -24,7 +24,7 @@ public class SelectionController : MonoBehaviour
         RaycastHit hitData;
         if (Physics.Raycast(ray, out hitData, float.MaxValue, interactableMask))
         {
-            if (hitData.transform.TryGetComponent<Interactable>(out Interactable item))
+            if (hitData.transform.TryGetComponent<InteractableObject>(out InteractableObject item))
             {
                 selectedItem = item;
             }

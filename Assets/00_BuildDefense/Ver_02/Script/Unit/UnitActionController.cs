@@ -6,7 +6,7 @@ public class UnitActionController : MonoBehaviour
 {
     Unit selectedUnit;
 
-    public void SetSelectedUnit(Interactable item)
+    public void SetSelectedUnit(InteractableObject item)
     {
         if (item != null && item.IsMoveable)
         {
@@ -19,5 +19,10 @@ public class UnitActionController : MonoBehaviour
     public void MoveUnit()
     {
         if (selectedUnit!=null) selectedUnit.Move();
+    }
+
+    public void StopUnit()
+    {
+        if (selectedUnit!=null) selectedUnit.Stop();
     }
 }
