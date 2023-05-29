@@ -14,7 +14,7 @@ public class GridManager : MonoBehaviour
     [SerializeField] GridItemUI gridItemPrefab;
 
     [Header("Placeable items")]
-    [SerializeField] IPlaceable activeItem;
+    [SerializeField] Interactable activeItem;
 
     Grid gridSystem;
 
@@ -29,7 +29,7 @@ public class GridManager : MonoBehaviour
         if (Input.GetMouseButtonDown(0)) { TryPlaceItemAtGrid(); }
     }
 
-    public void SetActiveItem(IPlaceable activeItem)
+    public void SetActiveItem(Interactable activeItem)
     {
         this.activeItem = activeItem;
     }
@@ -48,7 +48,7 @@ public class GridManager : MonoBehaviour
 
             if(gridItem.IsPlaceable())
             {
-                IPlaceable item = Instantiate(activeItem, gridSystem.GridToWorldPos(gridPos), Quaternion.identity);
+                Interactable item = Instantiate(activeItem, gridSystem.GridToWorldPos(gridPos), Quaternion.identity);
                 gridItem.SetItem(item);
             }
         }
@@ -62,13 +62,13 @@ public class GridManager : MonoBehaviour
         gridItem.SetItem(null);
     }
 
-    public void SetItemAtGrid(IPlaceable item, GridPosition gridPosition)
+    public void SetItemAtGrid(Interactable item, GridPosition gridPosition)
     {
         GridItem gridItem = GetItemAtGrid(gridPosition);
         gridItem.SetItem(item);
     }
 
-    public void ItemMoveGridPosition(IPlaceable item, GridPosition fromGridPos, GridPosition toGridPos)
+    public void ItemMoveGridPosition(Interactable item, GridPosition fromGridPos, GridPosition toGridPos)
     {
         RemoveItemAtGrid(fromGridPos);
         SetItemAtGrid(item, toGridPos);

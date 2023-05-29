@@ -6,7 +6,7 @@ public class GridItem
 {
     private Grid gridSystem;
     private GridPosition gridPosition;
-    IPlaceable item;
+    Interactable item;
 
     public GridItem(Grid gridSystem, GridPosition gridPosition)
     {
@@ -14,7 +14,7 @@ public class GridItem
         this.gridPosition = gridPosition;
     }
 
-    public void SetItem(IPlaceable item)
+    public void SetItem(Interactable item)
     {
         this.item = item;
     }
