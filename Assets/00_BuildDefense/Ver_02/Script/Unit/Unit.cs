@@ -4,27 +4,31 @@ using UnityEngine;
 
 public class Unit : InteractableObject
 {
-    bool isMoving = false;
     GridPosition curGridPos;
-    GridManager gridSystem;
+    GridPosition nextGridPos;
+    GridManager gridManager;
+    Vector3 targetPos;
+    Vector3 moveDirection = new Vector3(1,0,0);
+    float moveSpeed = 5f;
+    int curRow;
 
-    private void Start() 
+    private void Awake() 
     {
-        
+        targetPos = transform.position;
     }
 
     private void Update() 
     {
-        if (isMoving)
+        //Debug.Log(Vector3.Distance(transform.position, targetPos));
+        if (Vector3.Distance(transform.position, targetPos) > 0.1f)
         {
-            transform.position = 
-                transform.position + new Vector3(1,0,0) * Time.deltaTime * 10;
+            transform.position += moveDirection * Time.deltaTime * moveSpeed;
 
-            GridPosition newGridPos = gridSystem.GetGridPosition(transform.position);
+            GridPosition newGridPos = gridManager.GetGridPosition(transform.position);
 
             if (newGridPos != curGridPos)
             {
-                gridSystem.ItemMoveGridPosition(this, curGridPos, newGridPos);
+                gridManager.ItemMoveGridPosition(this, curGridPos, newGridPos);
                 curGridPos = newGridPos;
             }
         }
@@ -32,18 +36,30 @@ public class Unit : InteractableObject
 
     public void Move()
     {
-        isMoving = true;
+        targetPos = gridManager.GetWorldPosition(gridManager.GetLastPosInRow(curRow));
+
+        //todo: set path
+        
     }
 
     public void Stop()
     {
-        isMoving = false;
+        if (transform.position.x < gridManager.GetWorldPosition(curGridPos).x)
+        {
+            targetPos = gridManager.GetWorldPosition(curGridPos);
+        }
+        else
+        {
+            nextGridPos = new GridPosition(curGridPos.x + 1, curGridPos.z);
+            targetPos = gridManager.GetWorldPosition(nextGridPos);
+        }
     }
 
-    public override void SetGridSystem(GridManager grid, GridPosition gridPosition)
+    public override void SetGridSystem(GridManager gridSystem)
     {
-        gridSystem = grid;
-        curGridPos = gridPosition;
+        this.gridManager = gridSystem;
+        curGridPos = gridSystem.GetGridPosition(transform.position);
+        curRow = curGridPos.z;
     }
 
     public override bool IsMoveable => true;

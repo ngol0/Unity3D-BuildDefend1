@@ -54,4 +54,14 @@ public class Grid
             Mathf.RoundToInt(worldPos.z/cellSize)
         );
     }
+
+    public bool IsValidGridPos(GridPosition gridPos)
+    {
+        return gridPos.x < gridWidth && gridPos.z < gridHeight;
+    }
+
+    public GridPosition GetLastGridPosInRow(int row)
+    {
+        return new GridPosition(gridWidth-1, row);
+    }
 }

@@ -5,5 +5,5 @@ using UnityEngine;
 public abstract class InteractableObject : MonoBehaviour
 {
     public abstract bool IsMoveable { get; }
-    public abstract void SetGridSystem(GridManager grid, GridPosition gridPosition);
+    public abstract void SetGridSystem(GridManager grid);
 }

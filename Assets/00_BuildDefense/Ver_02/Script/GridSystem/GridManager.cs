@@ -50,7 +50,7 @@ public class GridManager : MonoBehaviour
             {
                 InteractableObject item = Instantiate(activeItem, gridSystem.GetWorldPosition(gridPos), Quaternion.identity);
                 gridItem.SetInteractableItem(item);
-                item.SetGridSystem(this, gridPos);
+                item.SetGridSystem(this);
             }
         }
 
@@ -80,8 +80,9 @@ public class GridManager : MonoBehaviour
         return gridSystem.GetGridItem(gridPosition);
     }
 
-    public GridPosition GetGridPosition(Vector3 worldPos)
-    {
-        return gridSystem.GetGridPosition(worldPos);
-    }
+    public GridPosition GetGridPosition(Vector3 worldPos) => gridSystem.GetGridPosition(worldPos);
+
+    public Vector3 GetWorldPosition(GridPosition gridPos) => gridSystem.GetWorldPosition(gridPos);
+
+    public GridPosition GetLastPosInRow(int row) => gridSystem.GetLastGridPosInRow(row);
 }
