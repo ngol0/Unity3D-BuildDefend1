@@ -43,7 +43,7 @@ public class GridManager : MonoBehaviour
         RaycastHit hitData;
         if (Physics.Raycast(ray, out hitData, float.MaxValue, gridMask))
         {
-            GridPosition gridPos = gridSystem.GetGridPosition(hitData.transform.position);
+            GridPosition gridPos = gridSystem.GetGridPosition(hitData.point);
             GridItem gridItem = GetItemAtGrid(gridPos);
 
             if(gridItem.IsPlaceable())

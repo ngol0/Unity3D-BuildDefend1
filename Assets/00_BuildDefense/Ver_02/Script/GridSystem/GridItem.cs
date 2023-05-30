@@ -27,6 +27,6 @@ public class GridItem
     public override string ToString()
     {
         if (item!=null) return "Unit";
-        else return "";
+        else return "(" + gridPosition.x + ", " + gridPosition.z + ")";
     }
 }
