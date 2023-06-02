@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class UnitActionControllerUI : MonoBehaviour
+public class UnitMoveActionUI : MonoBehaviour
 {
     [SerializeField] GameObject guiMain;
     public void SetUnitControllerActive(InteractableObject item)

@@ -50,7 +50,7 @@ public class GridManager : MonoBehaviour
             {
                 InteractableObject item = Instantiate(activeItem, gridSystem.GetWorldPosition(gridPos), Quaternion.identity);
                 gridItem.SetInteractableItem(item);
-                item.SetGridSystem(this);
+                item.SetGridData(this);
             }
         }
 
@@ -84,5 +84,5 @@ public class GridManager : MonoBehaviour
 
     public Vector3 GetWorldPosition(GridPosition gridPos) => gridSystem.GetWorldPosition(gridPos);
 
-    public GridPosition GetLastPosInRow(int row) => gridSystem.GetLastGridPosInRow(row);
+    public GridPosition GetLastGridInRow(int row) => gridSystem.GetLastGridPosInRow(row);
 }
