@@ -4,5 +4,8 @@ using UnityEngine;
 
 public class Pathfinding : MonoBehaviour
 {
-    
+    private void Awake() 
+    {
+        
+    }
 }

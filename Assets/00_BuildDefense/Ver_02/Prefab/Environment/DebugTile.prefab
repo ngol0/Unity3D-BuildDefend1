@@ -142,4 +142,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 64368bc5169d0524584b7e6deaca106d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  text: {fileID: 4216315379627104912}
+  coordinateText: {fileID: 4216315379627104912}

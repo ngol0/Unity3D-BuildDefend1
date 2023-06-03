@@ -5,15 +5,16 @@ using UnityEngine;
 public class GridItemUI : MonoBehaviour
 {
     object gridItem;
-    [SerializeField] TextMesh text;
+    [SerializeField] TextMesh coordinateText;
     
-    public void SetGridItem(object gridItem)
+    public virtual void SetGridItem(object gridItem)
     {
         this.gridItem = gridItem;
+        //Debug.Log(gridItem.GetType());
     }
 
-    private void Update() 
+    protected virtual void Update() 
     {
-        text.text = gridItem.ToString();
+        coordinateText.text = gridItem.ToString();
     }
 }

@@ -12,29 +12,35 @@ public class GridManager : MonoBehaviour
 
     [Header("UI")]
     [SerializeField] GridItemUI gridItemPrefab;
+    [SerializeField] GridItemUI pathNodePrefab;
 
     [Header("Placeable items")]
     [SerializeField] InteractableObject activeItem;
 
     Grid<GridItem> gridSystem;
+    Grid<PathNode> pathSystem;
 
 
     private void Awake() 
     {
+        //delegate using lambda
+        gridSystem = new Grid<GridItem>(gridWidth,gridHeight,cellSize, 
+            (Grid<GridItem> g, GridPosition gridPos) => new GridItem(g, gridPos)
+        ); 
+
         //delegate using anonymous function
-        // gridSystem = new Grid<GridItem>(gridWidth,gridHeight,cellSize, 
-        //     delegate(Grid<GridItem> g, GridPosition gridPos) {
-        //         return new GridItem(g, gridPos);
-        //     }); 
+        pathSystem = new Grid<PathNode>(gridWidth, gridHeight, cellSize, 
+        delegate(Grid<PathNode> g, GridPosition gridPos) {
+                return new PathNode(g, gridPos);
+        });
 
-        gridSystem = new Grid<GridItem>(gridWidth, gridHeight, cellSize, CreateGridItem);
-        //gridSystem.CreateGridUI(gridItemPrefab, transform);
+        pathSystem.CreateGridUI(pathNodePrefab, transform);
     }
 
-    private GridItem CreateGridItem(Grid<GridItem> grid, GridPosition gridPos)
-    {
-        return new GridItem(grid, gridPos);
-    }
+    // private GridItem CreateGridItem(Grid<GridItem> grid, GridPosition gridPos)
+    // {
+    //     return new GridItem(grid, gridPos);
+    // }
 
     private void Update() 
     {

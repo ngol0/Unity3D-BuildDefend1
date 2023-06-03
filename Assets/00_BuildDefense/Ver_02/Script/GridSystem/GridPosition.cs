@@ -54,4 +54,9 @@ public struct GridPosition : IEquatable<GridPosition>
         return new GridPosition(a.x+b, a.z+b);
     }
 
+    public override string ToString()
+    {
+        return "(" + x + ", " + z + ")";
+    }
+
 }

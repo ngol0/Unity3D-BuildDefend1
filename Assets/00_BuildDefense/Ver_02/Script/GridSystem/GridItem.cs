@@ -6,7 +6,7 @@ public class GridItem
 {
     private Grid<GridItem> gridSystem;
     private GridPosition gridPosition;
-    InteractableObject item;
+    private InteractableObject item;
 
     public GridItem(Grid<GridItem> gridSystem, GridPosition gridPosition)
     {
@@ -27,6 +27,6 @@ public class GridItem
     public override string ToString()
     {
         if (item!=null) return "Unit";
-        else return "(" + gridPosition.x + ", " + gridPosition.z + ")";
+        else return gridPosition.ToString();
     }
 }
