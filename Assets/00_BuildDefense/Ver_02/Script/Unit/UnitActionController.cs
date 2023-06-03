@@ -18,11 +18,19 @@ public class UnitActionController : MonoBehaviour
 
     public void MoveStraight()
     {
-        if (selectedUnit!=null) selectedUnit.GetAction<MoveAheadAction>().MoveAhead();
+        if (selectedUnit==null) return;
+        selectedUnit.GetAction<MoveAction>().MoveAhead();
     }
 
     public void StopUnit()
     {
-        if (selectedUnit!=null) selectedUnit.GetAction<MoveAheadAction>().MoveUp();
+        if (selectedUnit==null) return; 
+        selectedUnit.GetAction<MoveAction>().Cancel();
+    }
+
+    public void MoveUp()
+    {
+        if (selectedUnit==null) return;
+        selectedUnit.GetAction<MoveAction>().MoveUp();
     }
 }

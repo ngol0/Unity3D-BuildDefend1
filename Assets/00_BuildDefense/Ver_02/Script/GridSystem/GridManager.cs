@@ -16,12 +16,24 @@ public class GridManager : MonoBehaviour
     [Header("Placeable items")]
     [SerializeField] InteractableObject activeItem;
 
-    Grid gridSystem;
+    Grid<GridItem> gridSystem;
+
 
     private void Awake() 
     {
-        gridSystem = new Grid(gridWidth,gridHeight,cellSize);
-        gridSystem.CreateGrid(gridItemPrefab, transform);
+        //delegate using anonymous function
+        // gridSystem = new Grid<GridItem>(gridWidth,gridHeight,cellSize, 
+        //     delegate(Grid<GridItem> g, GridPosition gridPos) {
+        //         return new GridItem(g, gridPos);
+        //     }); 
+
+        gridSystem = new Grid<GridItem>(gridWidth, gridHeight, cellSize, CreateGridItem);
+        //gridSystem.CreateGridUI(gridItemPrefab, transform);
+    }
+
+    private GridItem CreateGridItem(Grid<GridItem> grid, GridPosition gridPos)
+    {
+        return new GridItem(grid, gridPos);
     }
 
     private void Update() 

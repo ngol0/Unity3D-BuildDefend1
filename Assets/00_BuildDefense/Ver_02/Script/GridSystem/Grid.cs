@@ -3,23 +3,20 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Grid
+public class Grid<TGridItem>
 {
     private int gridHeight;
     private int gridWidth;
     private int cellSize;
-    private GridItem[,] gridItemArray;
+    private TGridItem[,] gridItemArray;
 
-    public Grid(int gridWidth, int gridHeight, int cellSize)
+    public Grid(int gridWidth, int gridHeight, int cellSize, Func<Grid<TGridItem>, GridPosition, TGridItem> createGridItem)
     {
         this.gridWidth = gridWidth;
         this.gridHeight = gridHeight;
         this.cellSize = cellSize;
-    }
 
-    public void CreateGrid(GridItemUI gridItemPrefab, Transform root)
-    {
-        gridItemArray = new GridItem[gridWidth, gridHeight];
+        gridItemArray = new TGridItem[gridWidth, gridHeight];
         for (int x = 0; x < gridWidth; x++)
         {
             for (int z = 0; z < gridHeight; z++)
@@ -27,7 +24,19 @@ public class Grid
                 GridPosition gridPos = new GridPosition(x,z);
 
                 //create grid array data
-                gridItemArray[x,z] = new GridItem(this, gridPos);
+                gridItemArray[x,z] = createGridItem(this, gridPos);
+
+            }
+        }
+    }
+
+    public void CreateGridUI(GridItemUI gridItemPrefab, Transform root)
+    {
+        for (int x = 0; x < gridWidth; x++)
+        {
+            for (int z = 0; z < gridHeight; z++)
+            {
+                GridPosition gridPos = new GridPosition(x,z);
 
                 //create grid ui
                 GridItemUI gridItemUI = 
@@ -37,7 +46,7 @@ public class Grid
         }
     }
 
-    public GridItem GetGridItem(GridPosition gridPos)
+    public TGridItem GetGridItem(GridPosition gridPos)
     {
         return gridItemArray[gridPos.x, gridPos.z];
     }

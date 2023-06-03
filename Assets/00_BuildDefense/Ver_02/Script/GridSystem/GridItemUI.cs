@@ -4,10 +4,10 @@ using UnityEngine;
 
 public class GridItemUI : MonoBehaviour
 {
-    GridItem gridItem;
+    object gridItem;
     [SerializeField] TextMesh text;
     
-    public void SetGridItem(GridItem gridItem)
+    public void SetGridItem(object gridItem)
     {
         this.gridItem = gridItem;
     }

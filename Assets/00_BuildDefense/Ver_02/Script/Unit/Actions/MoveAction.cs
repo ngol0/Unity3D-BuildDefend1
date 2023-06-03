@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MoveAheadAction : BaseAction
+public class MoveAction : BaseAction
 {
     private Vector3 targetPos;
     private Unit unit;
@@ -83,8 +83,8 @@ public class MoveAheadAction : BaseAction
         }
         else
         {
-            nextGridPos = new GridPosition(unit.CurGridPos.x + 1, unit.CurGridPos.z);
-            targetPos = gridManager.GetWorldPosition(nextGridPos);
+            //go to whatever grid pos it is supposed to be at
+            
         }
     }
 
