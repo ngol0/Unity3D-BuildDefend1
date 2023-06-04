@@ -16,7 +16,7 @@ public class GridManager : MonoBehaviour
     [Header("Placeable items")]
     [SerializeField] InteractableObject activeItem;
 
-    Grid<GridItem> gridSystem;
+    GridSystem<GridItem> gridSystem;
 
     public int GridWidth => gridWidth;
     public int GridHeight => gridHeight;
@@ -28,8 +28,8 @@ public class GridManager : MonoBehaviour
     private void Awake() 
     {
         //delegate using lambda
-        gridSystem = new Grid<GridItem>(gridWidth,gridHeight,cellSize, 
-            (Grid<GridItem> g, GridPosition gridPos) => new GridItem(g, gridPos)
+        gridSystem = new GridSystem<GridItem>(gridWidth,gridHeight,cellSize, 
+            (GridSystem<GridItem> g, GridPosition gridPos) => new GridItem(g, gridPos)
         ); 
     }
 

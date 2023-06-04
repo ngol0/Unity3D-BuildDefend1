@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class PathNode
 {
-    private Grid<PathNode> gridSystem;
+    private GridSystem<PathNode> gridSystem;
     private GridPosition gridPosition;
     public GridPosition GridPos => gridPosition;
     private int fCost;
@@ -18,7 +18,7 @@ public class PathNode
     private PathNode cameFromNode;
     public PathNode CameFromNode => cameFromNode;
 
-    public PathNode(Grid<PathNode> gridSystem, GridPosition gridPosition)
+    public PathNode(GridSystem<PathNode> gridSystem, GridPosition gridPosition)
     {
         this.gridSystem = gridSystem;
         this.gridPosition = gridPosition;

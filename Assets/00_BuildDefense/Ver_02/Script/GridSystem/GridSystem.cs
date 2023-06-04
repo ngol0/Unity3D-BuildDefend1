@@ -1,14 +1,14 @@
 using System;
 using UnityEngine;
 
-public class Grid<TGridItem>
+public class GridSystem<TGridItem>
 {
     private int gridHeight;
     private int gridWidth;
     private int cellSize;
     private TGridItem[,] gridItemArray;
 
-    public Grid(int gridWidth, int gridHeight, int cellSize, Func<Grid<TGridItem>, GridPosition, TGridItem> createGridItem)
+    public GridSystem(int gridWidth, int gridHeight, int cellSize, Func<GridSystem<TGridItem>, GridPosition, TGridItem> createGridItem)
     {
         this.gridWidth = gridWidth;
         this.gridHeight = gridHeight;
@@ -64,10 +64,10 @@ public class Grid<TGridItem>
 
     public bool IsValidGridPos(GridPosition gridPos)
     {
-        return 0 < gridPos.x 
-            && gridPos.x < gridWidth 
-            && 0 < gridPos.z 
-            && gridPos.z < gridHeight;
+        return 0 <= gridPos.x 
+            && gridPos.x <= gridWidth-1     
+            && 0 <= gridPos.z 
+            && gridPos.z <= gridHeight-1;
     }
 
     public GridPosition GetLastGridPosInRow(int row)

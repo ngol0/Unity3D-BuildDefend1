@@ -7,8 +7,8 @@ public class Pathfinding : MonoBehaviour
 {
     [SerializeField] GridManager gridManager;
     [SerializeField] GridItemUI pathNodePrefab;
-    Grid<PathNode> pathSystem;
-    public Grid<PathNode> PathSystem => pathSystem;
+    GridSystem<PathNode> pathSystem;
+    public GridSystem<PathNode> PathSystem => pathSystem;
 
     private const int STRAIGHT_MOVE_COST = 10;
     private const int DIAGONAL_COST = 14;
@@ -16,9 +16,9 @@ public class Pathfinding : MonoBehaviour
     private void Awake()
     {
         //delegate using anonymous function
-        pathSystem = new Grid<PathNode>
+        pathSystem = new GridSystem<PathNode>
             (gridManager.GridWidth, gridManager.GridHeight, gridManager.CellSize,
-                delegate (Grid<PathNode> g, GridPosition gridPos)
+                delegate (GridSystem<PathNode> g, GridPosition gridPos)
                 {
                     return new PathNode(g, gridPos);
                 }
@@ -72,7 +72,7 @@ public class Pathfinding : MonoBehaviour
                 {
                     //reset g h and f cost
                     neighborNode.SetGCost(currentGCost);
-                    neighborNode.SetHCost(GetDiagonalDistance(currentNode.GridPos, endPos));
+                    neighborNode.SetHCost(GetDiagonalDistance(neighborNode.GridPos, endPos));
                     neighborNode.CalculateFCost();
                     neighborNode.SetCameFromNode(currentNode);
 
@@ -157,8 +157,9 @@ public class Pathfinding : MonoBehaviour
         {
             for (int z = -1; z <=1; z++)
             {
-                if (x == gridPosition.x && z == gridPosition.z) continue;
+                if (x == 0 && z == 0) continue;
                 GridPosition potentialNeighbor = gridPosition + new GridPosition(x,z);
+
                 if (pathSystem.IsValidGridPos(potentialNeighbor))
                 {
                     neighbourList.Add(GetNode(potentialNeighbor));
@@ -170,7 +171,6 @@ public class Pathfinding : MonoBehaviour
     }
 
     public PathNode GetNode(GridPosition gridPos) => pathSystem.GetGridItem(gridPos);
-
     public Vector3 GetWorldPosition(GridPosition gridPos) => pathSystem.GetWorldPosition(gridPos);
-     public GridPosition GetGridPosition(Vector3 worldPos) => pathSystem.GetGridPosition(worldPos);
+    public GridPosition GetGridPosition(Vector3 worldPos) => pathSystem.GetGridPosition(worldPos);
 }

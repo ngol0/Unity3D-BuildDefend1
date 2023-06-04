@@ -1163,6 +1163,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bc5907d8d6e8841a6a53d4e12c81000b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  gridManager: {fileID: 1654398830}
+  pathNodePrefab: {fileID: 8082619177211339362, guid: 5bc6446b5a1db4a0fa10078338703fc7, type: 3}
 --- !u!4 &786488378
 Transform:
   m_ObjectHideFlags: 0
@@ -2760,6 +2762,54 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!1 &1604407918
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1604407920}
+  - component: {fileID: 1604407919}
+  m_Layer: 0
+  m_Name: Testing
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1604407919
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1604407918}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 13cb0ad9900b4470bb39a7e04b14b743, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  pathFinding: {fileID: 786488377}
+  gridLayer:
+    serializedVersion: 2
+    m_Bits: 128
+--- !u!4 &1604407920
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1604407918}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 16
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1654398829
 GameObject:
   m_ObjectHideFlags: 0
@@ -2796,8 +2846,8 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 128
   gridItemPrefab: {fileID: 4024863129330203862, guid: 9afb6a3cb343740f3aacbe922ea1f699, type: 3}
-  pathNodePrefab: {fileID: 8082619177211339362, guid: 5bc6446b5a1db4a0fa10078338703fc7, type: 3}
   activeItem: {fileID: -1097294237071409920, guid: 94b3ed799f64c5a4a8d4bd36c515f477, type: 3}
+  isTesting: 0
 --- !u!4 &1654398831
 Transform:
   m_ObjectHideFlags: 0
