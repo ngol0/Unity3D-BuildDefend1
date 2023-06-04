@@ -1,6 +1,4 @@
 using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class Grid<TGridItem>
@@ -66,7 +64,10 @@ public class Grid<TGridItem>
 
     public bool IsValidGridPos(GridPosition gridPos)
     {
-        return gridPos.x < gridWidth && gridPos.z < gridHeight;
+        return 0 < gridPos.x 
+            && gridPos.x < gridWidth 
+            && 0 < gridPos.z 
+            && gridPos.z < gridHeight;
     }
 
     public GridPosition GetLastGridPosInRow(int row)

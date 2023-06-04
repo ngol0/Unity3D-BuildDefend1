@@ -12,13 +12,17 @@ public class GridManager : MonoBehaviour
 
     [Header("UI")]
     [SerializeField] GridItemUI gridItemPrefab;
-    [SerializeField] GridItemUI pathNodePrefab;
 
     [Header("Placeable items")]
     [SerializeField] InteractableObject activeItem;
 
     Grid<GridItem> gridSystem;
-    Grid<PathNode> pathSystem;
+
+    public int GridWidth => gridWidth;
+    public int GridHeight => gridHeight;
+    public int CellSize => cellSize;
+
+    [SerializeField] bool isTesting;
 
 
     private void Awake() 
@@ -27,14 +31,6 @@ public class GridManager : MonoBehaviour
         gridSystem = new Grid<GridItem>(gridWidth,gridHeight,cellSize, 
             (Grid<GridItem> g, GridPosition gridPos) => new GridItem(g, gridPos)
         ); 
-
-        //delegate using anonymous function
-        pathSystem = new Grid<PathNode>(gridWidth, gridHeight, cellSize, 
-        delegate(Grid<PathNode> g, GridPosition gridPos) {
-                return new PathNode(g, gridPos);
-        });
-
-        pathSystem.CreateGridUI(pathNodePrefab, transform);
     }
 
     // private GridItem CreateGridItem(Grid<GridItem> grid, GridPosition gridPos)
@@ -44,7 +40,8 @@ public class GridManager : MonoBehaviour
 
     private void Update() 
     {
-        if (Input.GetMouseButtonDown(0)) { TryPlaceItemAtGrid(); }
+        // if (Input.GetMouseButtonDown(0)) 
+        // { TryPlaceItemAtGrid(); }
     }
 
     public void SetActiveItem(InteractableObject activeItem)

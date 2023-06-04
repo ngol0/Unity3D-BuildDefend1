@@ -2796,6 +2796,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 128
   gridItemPrefab: {fileID: 4024863129330203862, guid: 9afb6a3cb343740f3aacbe922ea1f699, type: 3}
+  pathNodePrefab: {fileID: 8082619177211339362, guid: 5bc6446b5a1db4a0fa10078338703fc7, type: 3}
   activeItem: {fileID: -1097294237071409920, guid: 94b3ed799f64c5a4a8d4bd36c515f477, type: 3}
 --- !u!4 &1654398831
 Transform:
