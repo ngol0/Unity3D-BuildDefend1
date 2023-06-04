@@ -6,16 +6,9 @@ public class Testing : MonoBehaviour
 {
     [SerializeField] Pathfinding pathFinding;
     [SerializeField] LayerMask gridLayer;
-    PathNode startingPathNode;
-    PathNode endNode;
 
     List<GridPosition> list;
     
-    void Start()
-    {
-        startingPathNode = pathFinding.GetNode(0,0);
-    }
-
     void Update()
     {
         if (Input.GetMouseButtonDown(0))
@@ -25,8 +18,7 @@ public class Testing : MonoBehaviour
             if (Physics.Raycast(ray, out hitData, float.MaxValue, gridLayer))
             {
                 GridPosition gridPos = pathFinding.GetGridPosition(hitData.point);
-                endNode = pathFinding.GetNode(gridPos.x, gridPos.z);
-                list = pathFinding.FindPath(startingPathNode, endNode);
+                list = pathFinding.FindPath(new GridPosition(0,0), gridPos);
 
                 for (int i = 0; i<list.Count -1; i++)
                 {

@@ -27,17 +27,20 @@ public class Pathfinding : MonoBehaviour
         pathSystem.CreateGridUI(pathNodePrefab, transform);
     }
 
-    public List<GridPosition> FindPath(PathNode startNode, PathNode endNode)
+    public List<GridPosition> FindPath(GridPosition startPos, GridPosition endPos)
     {
         List<PathNode> openList = new List<PathNode>();
         List<PathNode> closedList = new List<PathNode>();
+
+        PathNode startNode = GetNode(startPos);
+        PathNode endNode = GetNode(endPos);
 
         openList.Add(startNode);
 
         ResetPathfindingData();
 
         startNode.SetGCost(0);
-        startNode.SetHCost(GetDiagonalDistance(startNode.GridPos, endNode.GridPos));
+        startNode.SetHCost(GetDiagonalDistance(startPos, endPos));
         startNode.CalculateFCost();
 
         while (openList.Count > 0)
@@ -69,7 +72,7 @@ public class Pathfinding : MonoBehaviour
                 {
                     //reset g h and f cost
                     neighborNode.SetGCost(currentGCost);
-                    neighborNode.SetHCost(GetDiagonalDistance(currentNode.GridPos, endNode.GridPos));
+                    neighborNode.SetHCost(GetDiagonalDistance(currentNode.GridPos, endPos));
                     neighborNode.CalculateFCost();
                     neighborNode.SetCameFromNode(currentNode);
 
@@ -113,7 +116,7 @@ public class Pathfinding : MonoBehaviour
             for (int z = 0; z < gridManager.GridHeight; z++)
             {
                 GridPosition gridPos = new GridPosition(x, z);
-                PathNode node = pathSystem.GetGridItem(gridPos);
+                PathNode node = GetNode(gridPos);
                 node.SetCameFromNode(null);
                 node.SetGCost(int.MaxValue);
                 node.SetHCost(0);
@@ -150,57 +153,23 @@ public class Pathfinding : MonoBehaviour
 
         GridPosition gridPosition = currentNode.GridPos;
 
-        if (gridPosition.x - 1 >= 0)
+        for (int x = -1; x <=1; x++)
         {
-            // Left
-            neighbourList.Add(GetNode(gridPosition.x - 1, gridPosition.z + 0));
-            if (gridPosition.z - 1 >= 0)
+            for (int z = -1; z <=1; z++)
             {
-                // Left Down
-                neighbourList.Add(GetNode(gridPosition.x - 1, gridPosition.z - 1));
+                if (x == gridPosition.x && z == gridPosition.z) continue;
+                GridPosition potentialNeighbor = gridPosition + new GridPosition(x,z);
+                if (pathSystem.IsValidGridPos(potentialNeighbor))
+                {
+                    neighbourList.Add(GetNode(potentialNeighbor));
+                }
             }
-
-            if (gridPosition.z + 1 < gridManager.GridHeight)
-            {
-                // Left Up
-                neighbourList.Add(GetNode(gridPosition.x - 1, gridPosition.z + 1));
-            }
-        }
-
-        if (gridPosition.x + 1 < gridManager.GridWidth)
-        {
-            // Right
-            neighbourList.Add(GetNode(gridPosition.x + 1, gridPosition.z + 0));
-            if (gridPosition.z - 1 >= 0)
-            {
-                // Right Down
-                neighbourList.Add(GetNode(gridPosition.x + 1, gridPosition.z - 1));
-            }
-            if (gridPosition.z + 1 < gridManager.GridHeight)
-            {
-                // Right Up
-                neighbourList.Add(GetNode(gridPosition.x + 1, gridPosition.z + 1));
-            }
-        }
-
-        if (gridPosition.z - 1 >= 0)
-        {
-            // Down
-            neighbourList.Add(GetNode(gridPosition.x + 0, gridPosition.z - 1));
-        }
-        if (gridPosition.z + 1 < gridManager.GridHeight)
-        {
-            // Up
-            neighbourList.Add(GetNode(gridPosition.x + 0, gridPosition.z + 1));
         }
 
         return neighbourList;
     }
 
-    public PathNode GetNode(int a, int b)
-    {
-        return pathSystem.GetGridItem(new GridPosition(a,b));
-    }
+    public PathNode GetNode(GridPosition gridPos) => pathSystem.GetGridItem(gridPos);
 
     public Vector3 GetWorldPosition(GridPosition gridPos) => pathSystem.GetWorldPosition(gridPos);
      public GridPosition GetGridPosition(Vector3 worldPos) => pathSystem.GetGridPosition(worldPos);

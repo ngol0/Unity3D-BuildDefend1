@@ -59,7 +59,7 @@ public class GridManager : MonoBehaviour
         if (Physics.Raycast(ray, out hitData, float.MaxValue, gridMask))
         {
             GridPosition gridPos = gridSystem.GetGridPosition(hitData.point);
-            GridItem gridItem = GetItemAtGrid(gridPos);
+            GridItem gridItem = GetGridItem(gridPos);
 
             if(gridItem.IsPlaceable())
             {
@@ -74,13 +74,13 @@ public class GridManager : MonoBehaviour
 
     public void RemoveItemAtGrid(GridPosition gridPosition)
     {
-        GridItem gridItem = GetItemAtGrid(gridPosition);
+        GridItem gridItem = GetGridItem(gridPosition);
         gridItem.SetInteractableItem(null);
     }
 
     public void SetItemAtGrid(InteractableObject item, GridPosition gridPosition)
     {
-        GridItem gridItem = GetItemAtGrid(gridPosition);
+        GridItem gridItem = GetGridItem(gridPosition);
         gridItem.SetInteractableItem(item);
     }
 
@@ -90,14 +90,8 @@ public class GridManager : MonoBehaviour
         SetItemAtGrid(item, toGridPos);
     }
 
-    public GridItem GetItemAtGrid(GridPosition gridPosition)
-    {
-        return gridSystem.GetGridItem(gridPosition);
-    }
-
+    public GridItem GetGridItem(GridPosition gridPosition) => gridSystem.GetGridItem(gridPosition);
     public GridPosition GetGridPosition(Vector3 worldPos) => gridSystem.GetGridPosition(worldPos);
-
     public Vector3 GetWorldPosition(GridPosition gridPos) => gridSystem.GetWorldPosition(gridPos);
-
     public GridPosition GetLastGridInRow(int row) => gridSystem.GetLastGridPosInRow(row);
 }
