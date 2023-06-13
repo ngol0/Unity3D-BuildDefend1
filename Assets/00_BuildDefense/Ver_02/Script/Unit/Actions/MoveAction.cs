@@ -53,25 +53,23 @@ public class MoveAction : BaseAction
         }
     }
 
-    public void MoveToPoint()
+    public void SetPath(List<GridPosition> positionTargets)
     {
-        
+        foreach (var position in positionTargets)
+        {
+            gridTargets.Enqueue(position);
+        }
     }
 
     public void MoveAhead()
     {
-        GridPosition lastGridPos = GetLastGridInRow(unit.CurGridPos.z);
-        gridTargets.Enqueue(lastGridPos);
+        GridPosition destination = GetLastGridInRow(unit.CurGridPos.z);
+        
     }
 
     public void MoveUp()
     {
-        GridPosition upGridPos = unit.CurGridPos + 1;
-
-        gridTargets.Enqueue(upGridPos);
-
-        GridPosition lastGridPos = GetLastGridInRow(upGridPos.z);
-        gridTargets.Enqueue(lastGridPos);
+        
     }
 
     public GridPosition GetLastGridInRow(int row)
@@ -82,15 +80,18 @@ public class MoveAction : BaseAction
 
     public override void Cancel()
     {
-        if (transform.position.x < playGrid.GetWorldPosition(unit.CurGridPos).x)
-        {
-            targetPos = playGrid.GetWorldPosition(unit.CurGridPos);
-        }
-        else
-        {
-            //go to whatever grid pos it is supposed to be at
+        // if (transform.position.x < playGrid.GetWorldPosition(unit.CurGridPos).x)
+        // {
+        //     targetPos = playGrid.GetWorldPosition(unit.CurGridPos);
+        //     gridTargets.Clear();
+        // }
+        // else
+        // {
+        //     
             
-        }
+        // }
+
+        gridTargets.Clear();
     }
 
 }

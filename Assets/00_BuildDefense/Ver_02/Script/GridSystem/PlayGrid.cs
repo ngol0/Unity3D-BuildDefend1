@@ -33,8 +33,8 @@ public class PlayGrid : MonoBehaviour
 
     private void Update() 
     {
-        // if (Input.GetMouseButtonDown(0)) 
-        // { TryPlaceItemAtGrid(); }
+        if (Input.GetMouseButtonDown(0)) 
+        { TryPlaceItemAtGrid(); }
     }
 
     public void SetActiveItem(InteractableObject activeItem)

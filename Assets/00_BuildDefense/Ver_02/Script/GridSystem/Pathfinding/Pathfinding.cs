@@ -142,8 +142,8 @@ public class Pathfinding : MonoBehaviour
     //diagnoal distance function for heuristics cost (HCost) & GCost
     private int CalculateDistance(GridPosition currentPos, GridPosition endPos)
     {
-        int dx = Mathf.Abs(currentPos.x = endPos.x);
-        int dy = Mathf.Abs(currentPos.z = endPos.z);
+        int dx = Mathf.Abs(currentPos.x - endPos.x);
+        int dy = Mathf.Abs(currentPos.z - endPos.z);
 
         return STRAIGHT_MOVE_COST*(dx+dy) + (DIAGONAL_COST - 2*STRAIGHT_MOVE_COST)*Mathf.Min(dx,dy);
     }
