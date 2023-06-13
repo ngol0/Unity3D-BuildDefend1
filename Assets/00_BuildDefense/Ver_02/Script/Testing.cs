@@ -27,6 +27,9 @@ public class Testing : MonoBehaviour
                         pathFinding.GetWorldPosition(list[i + 1]), 
                         Color.blue, 
                         5f);
+
+                    //make the character go there
+                    
                 }
             }
         }

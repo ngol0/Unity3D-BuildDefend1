@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class Unit : InteractableObject
 {
-    private GridManager gridManager;
-    public GridManager GridManager => gridManager;
+    private PlayGrid playGrid;
+    public PlayGrid PlayGrid => playGrid;
 
     private GridPosition curGridPos;
     public GridPosition CurGridPos => curGridPos;
@@ -19,19 +19,19 @@ public class Unit : InteractableObject
 
     private void Update()
     {
-        GridPosition newGridPos = GridManager.GetGridPosition(transform.position);
+        GridPosition newGridPos = PlayGrid.GetGridPosition(transform.position);
 
         if (newGridPos != curGridPos)
         {
-            GridManager.ItemMoveGridPosition(this, curGridPos, newGridPos);
+            PlayGrid.ItemMoveGridPosition(this, curGridPos, newGridPos);
             curGridPos = newGridPos;
         }
     }
 
-    public override void SetGridData(GridManager gridSystem)
+    public override void SetGridData(PlayGrid gridSystem)
     {
-        this.gridManager = gridSystem;
-        curGridPos = GridManager.GetGridPosition(transform.position);
+        this.playGrid = gridSystem;
+        curGridPos = PlayGrid.GetGridPosition(transform.position);
     }
 
     public override bool IsMoveable => true;

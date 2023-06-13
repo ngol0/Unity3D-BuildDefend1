@@ -9,7 +9,7 @@ public class MoveAction : BaseAction
     private float moveSpeed = 5f;
     private Vector3 moveDirection;
     private GridPosition nextGridPos;
-    private GridManager gridManager;
+    private PlayGrid playGrid;
     private Queue<GridPosition> gridTargets = new Queue<GridPosition>();
 
     bool setNextTarget = false;
@@ -22,7 +22,7 @@ public class MoveAction : BaseAction
     private void Start()
     {
         unit = GetComponent<Unit>();
-        gridManager = unit.GridManager;
+        playGrid = unit.PlayGrid;
     }
 
 
@@ -47,10 +47,15 @@ public class MoveAction : BaseAction
         if (gridTargets.Count > 0 && setNextTarget)
         {
             var gridTarget = gridTargets.Dequeue();
-            targetPos = gridManager.GetWorldPosition(gridTarget);
+            targetPos = playGrid.GetWorldPosition(gridTarget);
 
             setNextTarget = false;
         }
+    }
+
+    public void MoveToPoint()
+    {
+        
     }
 
     public void MoveAhead()
@@ -71,15 +76,15 @@ public class MoveAction : BaseAction
 
     public GridPosition GetLastGridInRow(int row)
     {
-        return gridManager.GetLastGridInRow(row);
+        return playGrid.GetLastGridInRow(row);
     }
 
 
     public override void Cancel()
     {
-        if (transform.position.x < gridManager.GetWorldPosition(unit.CurGridPos).x)
+        if (transform.position.x < playGrid.GetWorldPosition(unit.CurGridPos).x)
         {
-            targetPos = gridManager.GetWorldPosition(unit.CurGridPos);
+            targetPos = playGrid.GetWorldPosition(unit.CurGridPos);
         }
         else
         {

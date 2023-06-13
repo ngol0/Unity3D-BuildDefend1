@@ -939,7 +939,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 14
+  m_RootOrder: 15
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &705507993
 GameObject:
@@ -1116,7 +1116,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 12
+  m_RootOrder: 13
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &761233752
 MonoBehaviour:
@@ -1163,7 +1163,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bc5907d8d6e8841a6a53d4e12c81000b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gridManager: {fileID: 1654398830}
+  playGrid: {fileID: 1654398830}
   pathNodePrefab: {fileID: 8082619177211339362, guid: 5bc6446b5a1db4a0fa10078338703fc7, type: 3}
 --- !u!4 &786488378
 Transform:
@@ -1178,7 +1178,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 15
+  m_RootOrder: 12
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &799647272
 GameObject:
@@ -2821,7 +2821,7 @@ GameObject:
   - component: {fileID: 1654398831}
   - component: {fileID: 1654398830}
   m_Layer: 0
-  m_Name: GridManager
+  m_Name: PlayGrid
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2847,7 +2847,6 @@ MonoBehaviour:
     m_Bits: 128
   gridItemPrefab: {fileID: 4024863129330203862, guid: 9afb6a3cb343740f3aacbe922ea1f699, type: 3}
   activeItem: {fileID: -1097294237071409920, guid: 94b3ed799f64c5a4a8d4bd36c515f477, type: 3}
-  isTesting: 0
 --- !u!4 &1654398831
 Transform:
   m_ObjectHideFlags: 0
@@ -3084,7 +3083,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 13
+  m_RootOrder: 14
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1805743419
 GameObject:

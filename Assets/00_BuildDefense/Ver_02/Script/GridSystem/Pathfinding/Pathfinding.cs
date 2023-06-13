@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class Pathfinding : MonoBehaviour
 {
-    [SerializeField] GridManager gridManager;
+    [SerializeField] PlayGrid playGrid;
     [SerializeField] GridItemUI pathNodePrefab;
     GridSystem<PathNode> pathSystem;
     public GridSystem<PathNode> PathSystem => pathSystem;
@@ -17,7 +17,7 @@ public class Pathfinding : MonoBehaviour
     {
         //delegate using anonymous function
         pathSystem = new GridSystem<PathNode>
-            (gridManager.GridWidth, gridManager.GridHeight, gridManager.CellSize,
+            (playGrid.GridWidth, playGrid.GridHeight, playGrid.CellSize,
                 delegate (GridSystem<PathNode> g, GridPosition gridPos)
                 {
                     return new PathNode(g, gridPos);
@@ -27,6 +27,7 @@ public class Pathfinding : MonoBehaviour
         pathSystem.CreateGridUI(pathNodePrefab, transform);
     }
 
+    //a-star algorithm
     public List<GridPosition> FindPath(GridPosition startPos, GridPosition endPos)
     {
         List<PathNode> openList = new List<PathNode>();
@@ -40,7 +41,7 @@ public class Pathfinding : MonoBehaviour
         ResetPathfindingData();
 
         startNode.SetGCost(0);
-        startNode.SetHCost(GetDiagonalDistance(startPos, endPos));
+        startNode.SetHCost(CalculateDistance(startPos, endPos));
         startNode.CalculateFCost();
 
         while (openList.Count > 0)
@@ -66,13 +67,13 @@ public class Pathfinding : MonoBehaviour
                 if (closedList.Contains(neighborNode)) continue;
 
                 int currentGCost = currentNode.GCost + 
-                    GetDiagonalDistance(currentNode.GridPos, neighborNode.GridPos);
+                    CalculateDistance(currentNode.GridPos, neighborNode.GridPos);
 
                 if (currentGCost < neighborNode.GCost)
                 {
                     //reset g h and f cost
                     neighborNode.SetGCost(currentGCost);
-                    neighborNode.SetHCost(GetDiagonalDistance(neighborNode.GridPos, endPos));
+                    neighborNode.SetHCost(CalculateDistance(neighborNode.GridPos, endPos));
                     neighborNode.CalculateFCost();
                     neighborNode.SetCameFromNode(currentNode);
 
@@ -111,9 +112,9 @@ public class Pathfinding : MonoBehaviour
 
     private void ResetPathfindingData()
     {
-        for (int x = 0; x < gridManager.GridWidth; x++)
+        for (int x = 0; x < playGrid.GridWidth; x++)
         {
-            for (int z = 0; z < gridManager.GridHeight; z++)
+            for (int z = 0; z < playGrid.GridHeight; z++)
             {
                 GridPosition gridPos = new GridPosition(x, z);
                 PathNode node = GetNode(gridPos);
@@ -139,7 +140,7 @@ public class Pathfinding : MonoBehaviour
     }
 
     //diagnoal distance function for heuristics cost (HCost) & GCost
-    private int GetDiagonalDistance(GridPosition currentPos, GridPosition endPos)
+    private int CalculateDistance(GridPosition currentPos, GridPosition endPos)
     {
         int dx = Mathf.Abs(currentPos.x = endPos.x);
         int dy = Mathf.Abs(currentPos.z = endPos.z);

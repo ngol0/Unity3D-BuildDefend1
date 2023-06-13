@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GridManager : MonoBehaviour
+public class PlayGrid : MonoBehaviour
 {
     [Header("Grid Stats")]
     [SerializeField] int gridWidth = 10;
@@ -22,8 +22,6 @@ public class GridManager : MonoBehaviour
     public int GridHeight => gridHeight;
     public int CellSize => cellSize;
 
-    [SerializeField] bool isTesting;
-
 
     private void Awake() 
     {
@@ -32,11 +30,6 @@ public class GridManager : MonoBehaviour
             (GridSystem<GridItem> g, GridPosition gridPos) => new GridItem(g, gridPos)
         ); 
     }
-
-    // private GridItem CreateGridItem(Grid<GridItem> grid, GridPosition gridPos)
-    // {
-    //     return new GridItem(grid, gridPos);
-    // }
 
     private void Update() 
     {
