@@ -80,7 +80,6 @@ public class MoveAction : BaseAction
         return playGrid.GetLastGridInRow(row);
     }
 
-
     public override void Cancel()
     {
         gridTargets.Clear();

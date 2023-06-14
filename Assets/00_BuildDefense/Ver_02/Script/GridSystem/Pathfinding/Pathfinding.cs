@@ -9,6 +9,7 @@ public class Pathfinding : MonoBehaviour
     [SerializeField] GridItemUI pathNodePrefab;
     GridSystem<PathNode> pathSystem;
     public GridSystem<PathNode> PathSystem => pathSystem;
+    [SerializeField] LayerMask obstacleMask;
 
     private const int STRAIGHT_MOVE_COST = 10;
     private const int DIAGONAL_COST = 14;
@@ -25,6 +26,23 @@ public class Pathfinding : MonoBehaviour
             );
 
         pathSystem.CreateGridUI(pathNodePrefab, transform);
+    }
+
+    private void SetUpWalkable()
+    {
+        for (int x = 0; x < playGrid.GridWidth; x++)
+        {
+            for (int z = 0; z < playGrid.GridHeight; z++)
+            {
+                GridPosition gridPos = new GridPosition(x,z);
+                if (Physics.Raycast(GetWorldPosition(gridPos) + Vector3.down * 5f, Vector3.up, float.MaxValue,obstacleMask)) 
+                {
+                    GetNode(gridPos).SetWalkable(false);
+                    return;
+                }
+                GetNode(gridPos).SetWalkable(true);
+            }
+        }
     }
 
     //a-star algorithm
@@ -47,7 +65,7 @@ public class Pathfinding : MonoBehaviour
         while (openList.Count > 0)
         {
             PathNode currentNode = GetNodeWithLowestFCost(openList);
-            if (closedList.Contains(currentNode)) //if already set current
+            if (closedList.Contains(currentNode)) //if already searched
             {
                 continue;
             }
@@ -65,6 +83,11 @@ public class Pathfinding : MonoBehaviour
             foreach (var neighborNode in GetNeighbourList(currentNode))
             {
                 if (closedList.Contains(neighborNode)) continue;
+                if (!neighborNode.IsWalkable)
+                {
+                    closedList.Add(neighborNode);
+                    continue;
+                }
 
                 int currentGCost = currentNode.GCost + 
                     CalculateDistance(currentNode.GridPos, neighborNode.GridPos);
