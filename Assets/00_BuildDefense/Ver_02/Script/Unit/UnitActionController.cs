@@ -5,6 +5,7 @@ using UnityEngine;
 public class UnitActionController : MonoBehaviour
 {
     Unit selectedUnit;
+    [SerializeField] Pathfinding pathfinding;
 
     public void SetSelectedUnit(InteractableObject item)
     {
@@ -16,10 +17,10 @@ public class UnitActionController : MonoBehaviour
         selectedUnit = null;
     }
 
-    public void MoveStraight()
+    public void MoveAhead()
     {
         if (selectedUnit==null) return;
-        selectedUnit.GetAction<MoveAction>().MoveAhead();
+        selectedUnit.GetAction<MoveAction>().MoveAhead(pathfinding);
     }
 
     public void StopUnit()

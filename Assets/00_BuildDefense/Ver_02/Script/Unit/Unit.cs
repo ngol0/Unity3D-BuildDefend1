@@ -9,9 +9,10 @@ public class Unit : InteractableObject
 
     private GridPosition curGridPos;
     public GridPosition CurGridPos => curGridPos;
-    public Testing testing;
-
     BaseAction[] actionArrays;
+
+    //----TESTING---//
+    public Testing testing;
 
     private void Start()
     {
@@ -26,7 +27,8 @@ public class Unit : InteractableObject
         {
             PlayGrid.ItemMoveGridPosition(this, curGridPos, newGridPos);
             curGridPos = newGridPos;
-            testing.SetStartingPoint(curGridPos);
+            
+            //testing.SetStartingPoint(curGridPos);
         }
     }
 
@@ -34,16 +36,19 @@ public class Unit : InteractableObject
     {
         this.playGrid = gridSystem;
         curGridPos = PlayGrid.GetGridPosition(transform.position);
-        testing = FindObjectOfType<Testing>();
 
-        testing.SetStartingPoint(curGridPos);
-        testing.Move += TestMove;
+    //----testing----//
+        // testing = FindObjectOfType<Testing>();
+        // testing.SetStartingPoint(curGridPos);
+        // testing.Move += TestMove;
     }
 
-    void TestMove()
-    {
-        GetAction<MoveAction>().SetPath(testing.list);
-    }
+    // void TestMove()
+    // {
+    //     GetAction<MoveAction>().SetPath(testing.list);
+    // }
+
+    //---end testing---//
 
     public override bool IsMoveable => true;
 

@@ -11,6 +11,7 @@ public class MoveAction : BaseAction
     private GridPosition nextGridPos;
     private PlayGrid playGrid;
     private Queue<GridPosition> gridTargets = new Queue<GridPosition>();
+    private List<GridPosition> paths = new List<GridPosition>();
 
     bool setNextTarget = false;
 
@@ -61,10 +62,12 @@ public class MoveAction : BaseAction
         }
     }
 
-    public void MoveAhead()
+    public void MoveAhead(Pathfinding pathfinding)
     {
         GridPosition destination = GetLastGridInRow(unit.CurGridPos.z);
-        
+        paths = pathfinding.FindPath(unit.CurGridPos, destination);
+
+        SetPath(paths);
     }
 
     public void MoveUp()
@@ -80,17 +83,6 @@ public class MoveAction : BaseAction
 
     public override void Cancel()
     {
-        // if (transform.position.x < playGrid.GetWorldPosition(unit.CurGridPos).x)
-        // {
-        //     targetPos = playGrid.GetWorldPosition(unit.CurGridPos);
-        //     gridTargets.Clear();
-        // }
-        // else
-        // {
-        //     
-            
-        // }
-
         gridTargets.Clear();
     }
 

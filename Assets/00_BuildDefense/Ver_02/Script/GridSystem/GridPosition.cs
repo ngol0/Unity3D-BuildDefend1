@@ -10,6 +10,10 @@ public struct GridPosition : IEquatable<GridPosition>
         this.x = x;
         this.z = z;
     }
+    public GridPosition Right => this + new GridPosition(1, 0);
+    public GridPosition RightUp => this + new GridPosition(1, 1);
+    public GridPosition RightDown => this + new GridPosition(1, -1);
+
 
     public override bool Equals(object obj)
     {
@@ -58,5 +62,4 @@ public struct GridPosition : IEquatable<GridPosition>
     {
         return "(" + x + ", " + z + ")";
     }
-
 }
