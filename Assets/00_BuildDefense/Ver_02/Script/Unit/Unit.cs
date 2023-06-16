@@ -21,11 +21,11 @@ public class Unit : InteractableObject
 
     private void Update()
     {
-        GridPosition newGridPos = PlayGrid.GetGridPosition(transform.position);
+        GridPosition newGridPos = playGrid.GetGridPosition(transform.position);
 
         if (newGridPos != curGridPos)
         {
-            PlayGrid.ItemMoveGridPosition(this, curGridPos, newGridPos);
+            playGrid.ItemMoveGridPosition(this, curGridPos, newGridPos);
             curGridPos = newGridPos;
             
             //testing.SetStartingPoint(curGridPos);
@@ -35,7 +35,7 @@ public class Unit : InteractableObject
     public override void SetGridData(PlayGrid gridSystem)
     {
         this.playGrid = gridSystem;
-        curGridPos = PlayGrid.GetGridPosition(transform.position);
+        curGridPos = playGrid.GetGridPosition(transform.position);
 
     //----testing----//
         // testing = FindObjectOfType<Testing>();

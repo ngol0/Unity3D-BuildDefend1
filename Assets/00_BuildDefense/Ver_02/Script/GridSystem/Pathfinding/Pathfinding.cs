@@ -25,7 +25,13 @@ public class Pathfinding : MonoBehaviour
                 }
             );
 
-        pathSystem.CreateGridUI(pathNodePrefab, transform);
+        //pathSystem.CreateGridUI(pathNodePrefab, transform);
+        
+    }
+
+    private void Start() 
+    {
+        SetUpWalkable();
     }
 
     private void SetUpWalkable()
@@ -35,12 +41,12 @@ public class Pathfinding : MonoBehaviour
             for (int z = 0; z < playGrid.GridHeight; z++)
             {
                 GridPosition gridPos = new GridPosition(x,z);
-                if (Physics.Raycast(GetWorldPosition(gridPos) + Vector3.down * 5f, Vector3.up, float.MaxValue,obstacleMask)) 
+                Debug.DrawRay(GetWorldPosition(gridPos) + Vector3.down * 10f, Vector3.up * 20, Color.red, 20f);
+                if (Physics.Raycast(GetWorldPosition(gridPos) + Vector3.down * 10f, Vector3.up, 20f, obstacleMask)) 
                 {
                     GetNode(gridPos).SetWalkable(false);
-                    return;
+                    Debug.Log(1);
                 }
-                GetNode(gridPos).SetWalkable(true);
             }
         }
     }
