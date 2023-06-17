@@ -2,14 +2,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Unit : InteractableObject
+public class Unit : IInteractable
 {
-    private PlayGrid playGrid;
-    public PlayGrid PlayGrid => playGrid;
-
     private GridPosition curGridPos;
     public GridPosition CurGridPos => curGridPos;
     BaseAction[] actionArrays;
+
+    public override bool IsMoveable => true;
+    
 
     //----TESTING---//
     public Testing testing;
@@ -27,30 +27,18 @@ public class Unit : InteractableObject
         {
             playGrid.ItemMoveGridPosition(this, curGridPos, newGridPos);
             curGridPos = newGridPos;
-            
+
             //testing.SetStartingPoint(curGridPos);
         }
     }
 
     public override void SetGridData(PlayGrid gridSystem)
     {
-        this.playGrid = gridSystem;
+        base.SetGridData(gridSystem);
         curGridPos = playGrid.GetGridPosition(transform.position);
 
-    //----testing----//
-        // testing = FindObjectOfType<Testing>();
-        // testing.SetStartingPoint(curGridPos);
-        // testing.Move += TestMove;
+        //TestingSetup();
     }
-
-    // void TestMove()
-    // {
-    //     GetAction<MoveAction>().SetPath(testing.list);
-    // }
-
-    //---end testing---//
-
-    public override bool IsMoveable => true;
 
     public T GetAction<T>() where T : BaseAction
     {
@@ -64,4 +52,19 @@ public class Unit : InteractableObject
 
         return null;
     }
+
+    //----testing----//
+    // void TestingSetup()
+    // {
+    //     testing = FindObjectOfType<Testing>();
+    //     testing.SetStartingPoint(curGridPos);
+    //     testing.Move += TestMove;
+    // }
+
+    // void TestMove()
+    // {
+    //     GetAction<MoveAction>().SetPath(testing.list);
+    // }
+
+    //---end testing---//
 }

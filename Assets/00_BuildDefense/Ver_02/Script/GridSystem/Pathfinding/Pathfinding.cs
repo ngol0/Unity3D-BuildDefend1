@@ -45,7 +45,6 @@ public class Pathfinding : MonoBehaviour
                 if (Physics.Raycast(GetWorldPosition(gridPos) + Vector3.down * 10f, Vector3.up, 20f, obstacleMask)) 
                 {
                     GetNode(gridPos).SetWalkable(false);
-                    Debug.Log(1);
                 }
             }
         }

@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4310472775481811858}
   - component: {fileID: 6007245915561076696}
+  - component: {fileID: 468204535720522175}
   m_Layer: 8
   m_Name: Woodbuilding
   m_TagString: Untagged
@@ -45,6 +46,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 87fb3add0a888df45bed391714b78888, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!65 &468204535720522175
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4310472775481811859}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 5.09, y: 5.1, z: 6}
+  m_Center: {x: 0, y: 2.72, z: 0}
 --- !u!1001 &4310472775586287019
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -118,24 +132,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e9c96bcb940f5d4419b99b973aac12d5, type: 3}
---- !u!1 &3967822966449582330 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: e9c96bcb940f5d4419b99b973aac12d5, type: 3}
-  m_PrefabInstance: {fileID: 4310472775586287019}
-  m_PrefabAsset: {fileID: 0}
---- !u!65 &8883104025756819741
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3967822966449582330}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 2.85, y: 2.7, z: 3.3}
-  m_Center: {x: 0, y: 0, z: 1.6500002}
 --- !u!4 &4349168115560311360 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: e9c96bcb940f5d4419b99b973aac12d5, type: 3}

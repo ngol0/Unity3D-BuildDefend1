@@ -2,13 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu]
+[CreateAssetMenu(menuName = "CustomizedEvents/InteractableEvent")]
 public class InteractableEvent : ScriptableObject
 {
     private List<InteractableEventListener> listeners =
         new List<InteractableEventListener>();
 
-    public void Raise(InteractableObject unit)
+    public void Raise(IInteractable unit)
     {
         //Debug.Log(":::Raise?");
         for (int i = listeners.Count - 1; i >= 0; i--)

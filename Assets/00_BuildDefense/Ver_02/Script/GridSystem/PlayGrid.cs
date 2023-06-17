@@ -8,14 +8,10 @@ public class PlayGrid : MonoBehaviour
     [SerializeField] int gridWidth = 10;
     [SerializeField] int gridHeight = 6;
     [SerializeField] int cellSize = 20;
-    [SerializeField] LayerMask gridMask;
     [SerializeField] LayerMask obstacleMask;
 
     [Header("UI")]
     [SerializeField] GridItemUI gridItemPrefab;
-
-    [Header("Placeable items")]
-    [SerializeField] InteractableObject activeItem;
 
     GridSystem<GridItem> gridSystem;
 
@@ -32,19 +28,11 @@ public class PlayGrid : MonoBehaviour
         );
 
         gridSystem.CreateGridUI(gridItemPrefab, transform);
+    }
 
+    private void Start() 
+    {
         SetUpPlaceable();
-    }
-
-    private void Update()
-    {
-        if (Input.GetMouseButtonDown(0))
-            TryPlaceItemAtGrid();
-    }
-
-    public void SetActiveItem(InteractableObject activeItem)
-    {
-        this.activeItem = activeItem;
     }
 
     private void SetUpPlaceable()
@@ -55,54 +43,31 @@ public class PlayGrid : MonoBehaviour
             {
                 GridPosition gridPos = new GridPosition(x, z);
                 RaycastHit hitData;
-                if (Physics.Raycast(GetWorldPosition(gridPos) + Vector3.down * 5f, Vector3.up, out hitData, float.MaxValue, obstacleMask))
+                if (Physics.Raycast(GetWorldPosition(gridPos) + Vector3.down * 5f, Vector3.up, out hitData, 20f, obstacleMask))
                 {
                     if (hitData.transform.TryGetComponent<IObject>(out IObject item))
                     {
                         gridSystem.GetGridItem(gridPos).SetItem(item);
-                        Debug.Log("eh?");
                     }
                 }
             }
         }
     }
 
-    public void TryPlaceItemAtGrid()
-    {
-        if (activeItem == null) return;
-
-        //ray cast to get a position
-        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-        RaycastHit hitData;
-        if (Physics.Raycast(ray, out hitData, float.MaxValue, gridMask))
-        {
-            GridPosition gridPos = gridSystem.GetGridPosition(hitData.point);
-            GridItem gridItem = GetGridItem(gridPos);
-
-            if (gridItem.IsPlaceable())
-            {
-                InteractableObject item = Instantiate(activeItem, gridSystem.GetWorldPosition(gridPos), Quaternion.identity);
-                gridItem.SetItem(item);
-                item.SetGridData(this);
-            }
-        }
-
-        SetActiveItem(null);
-    }
-
+    
     public void RemoveItemAtGrid(GridPosition gridPosition)
     {
         GridItem gridItem = GetGridItem(gridPosition);
         gridItem.SetItem(null);
     }
 
-    public void SetItemAtGrid(InteractableObject item, GridPosition gridPosition)
+    public void SetItemAtGrid(IInteractable item, GridPosition gridPosition)
     {
         GridItem gridItem = GetGridItem(gridPosition);
         gridItem.SetItem(item);
     }
 
-    public void ItemMoveGridPosition(InteractableObject item, GridPosition fromGridPos, GridPosition toGridPos)
+    public void ItemMoveGridPosition(IInteractable item, GridPosition fromGridPos, GridPosition toGridPos)
     {
         RemoveItemAtGrid(fromGridPos);
         SetItemAtGrid(item, toGridPos);

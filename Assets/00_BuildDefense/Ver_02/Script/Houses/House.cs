@@ -2,12 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class House : InteractableObject
+public class House : IInteractable
 {
+    private bool isMoveable;
     public override bool IsMoveable => false;
-
-    public override void SetGridData(PlayGrid grid)
-    {
-       
-    }
+    
 }
