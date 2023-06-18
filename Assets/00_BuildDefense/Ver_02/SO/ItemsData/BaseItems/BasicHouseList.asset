@@ -10,6 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 04d6f5e905e31414596ba7503847e126, type: 3}
-  m_Name: HouseList
+  m_Name: BasicHouseList
   m_EditorClassIdentifier: 
-  list: []
+  list:
+  - {fileID: 11400000, guid: e5962ab22027aea499148ea8ea77c0cc, type: 2}
+  - {fileID: 11400000, guid: b99e762ca8f040e428cedbb0ac5652ca, type: 2}
+  - {fileID: 11400000, guid: 63a7ff77c665ff7468319557800c8b21, type: 2}

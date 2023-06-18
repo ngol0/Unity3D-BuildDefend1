@@ -3,13 +3,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Pathfinding : MonoBehaviour
+public class Pathfinding : GridBase
 {
     [SerializeField] PlayGrid playGrid;
     [SerializeField] GridItemUI pathNodePrefab;
+    [SerializeField] LayerMask obstacleMask;
+
     GridSystem<PathNode> pathSystem;
     public GridSystem<PathNode> PathSystem => pathSystem;
-    [SerializeField] LayerMask obstacleMask;
 
     private const int STRAIGHT_MOVE_COST = 10;
     private const int DIAGONAL_COST = 14;
@@ -18,7 +19,7 @@ public class Pathfinding : MonoBehaviour
     {
         //delegate using anonymous function
         pathSystem = new GridSystem<PathNode>
-            (playGrid.GridWidth, playGrid.GridHeight, playGrid.CellSize,
+            (gridStats.gridWidth, gridStats.gridHeight, gridStats.cellSize,
                 delegate (GridSystem<PathNode> g, GridPosition gridPos)
                 {
                     return new PathNode(g, gridPos);
@@ -26,28 +27,12 @@ public class Pathfinding : MonoBehaviour
             );
 
         //pathSystem.CreateGridUI(pathNodePrefab, transform);
-        
+        InitialSetUp();
     }
 
-    private void Start() 
+    public override void SetItem(IObject item, GridPosition gridPos)
     {
-        SetUpWalkable();
-    }
-
-    private void SetUpWalkable()
-    {
-        for (int x = 0; x < playGrid.GridWidth; x++)
-        {
-            for (int z = 0; z < playGrid.GridHeight; z++)
-            {
-                GridPosition gridPos = new GridPosition(x,z);
-                Debug.DrawRay(GetWorldPosition(gridPos) + Vector3.down * 10f, Vector3.up * 20, Color.red, 20f);
-                if (Physics.Raycast(GetWorldPosition(gridPos) + Vector3.down * 10f, Vector3.up, 20f, obstacleMask)) 
-                {
-                    GetNode(gridPos).SetWalkable(false);
-                }
-            }
-        }
+        GetNode(gridPos).SetItem(item);
     }
 
     //a-star algorithm
@@ -88,7 +73,7 @@ public class Pathfinding : MonoBehaviour
             foreach (var neighborNode in GetNeighbourList(currentNode))
             {
                 if (closedList.Contains(neighborNode)) continue;
-                if (!neighborNode.IsWalkable)
+                if (!neighborNode.IsWalkable())
                 {
                     closedList.Add(neighborNode);
                     continue;
@@ -140,9 +125,9 @@ public class Pathfinding : MonoBehaviour
 
     private void ResetPathfindingData()
     {
-        for (int x = 0; x < playGrid.GridWidth; x++)
+        for (int x = 0; x < gridStats.gridWidth; x++)
         {
-            for (int z = 0; z < playGrid.GridHeight; z++)
+            for (int z = 0; z < gridStats.gridHeight; z++)
             {
                 GridPosition gridPos = new GridPosition(x, z);
                 PathNode node = GetNode(gridPos);
@@ -200,6 +185,6 @@ public class Pathfinding : MonoBehaviour
     }
 
     public PathNode GetNode(GridPosition gridPos) => pathSystem.GetGridItem(gridPos);
-    public Vector3 GetWorldPosition(GridPosition gridPos) => pathSystem.GetWorldPosition(gridPos);
-    public GridPosition GetGridPosition(Vector3 worldPos) => pathSystem.GetGridPosition(worldPos);
+    public override Vector3 GetWorldPosition(GridPosition gridPos) => pathSystem.GetWorldPosition(gridPos);
+    public override GridPosition GetGridPosition(Vector3 worldPos) => pathSystem.GetGridPosition(worldPos);
 }

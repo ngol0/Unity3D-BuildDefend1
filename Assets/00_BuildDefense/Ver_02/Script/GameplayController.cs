@@ -3,20 +3,23 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-public class MouseInputController : MonoBehaviour
+public class GameplayController : MonoBehaviour
 {
     [Header("Layer Mask for Raycast")]
     [SerializeField] LayerMask interactableMask;
     [SerializeField] LayerMask gridMask;
 
     [Header("Ref")]
-    [SerializeField] PlayGrid gridSystem;
+    [SerializeField] PlayGrid playGrid;
+    [SerializeField] Pathfinding pathFindingGrid;
 
     [Header("Event to raise")]
     [SerializeField] InteractableEvent OnItemSelected;
+    public System.Action OnItemPlaced;
+
 
     IInteractable selectedItem;
-    [SerializeField] IInteractable readyToPlaceItem;
+    InteractableData itemToPlaceData;
 
     private void Update()
     {
@@ -52,30 +55,37 @@ public class MouseInputController : MonoBehaviour
 
     public bool TryPlaceItemAtGrid()
     {
-        if (readyToPlaceItem == null) return false;
+        if (itemToPlaceData == null) return false;
 
         //ray cast to get a position
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
         RaycastHit hitData;
         if (Physics.Raycast(ray, out hitData, float.MaxValue, gridMask))
         {
-            GridPosition gridPos = gridSystem.GetGridPosition(hitData.point);
-            GridItem gridItem = gridSystem.GetGridItem(gridPos);
+            GridPosition gridPos = playGrid.GetGridPosition(hitData.point);
+            GridItem gridItem = playGrid.GetGridItem(gridPos);
+            PathNode pathNodeItem = pathFindingGrid.GetNode(gridPos);
 
             if (!gridItem.IsPlaceable()) return false;
 
-            IInteractable item = Instantiate(readyToPlaceItem, gridSystem.GetWorldPosition(gridPos), Quaternion.identity);
-            gridItem.SetItem(item);
-            item.SetGridData(gridSystem);
+            IInteractable item = Instantiate
+                (itemToPlaceData.housePrefab, 
+                playGrid.GetWorldPosition(gridPos), Quaternion.identity);
+                
+            gridItem.SetItem(item); //update placeable at grid position
+            pathNodeItem.SetItem(item);
+
+            item.SetGridData(playGrid);
         }
 
-        SetActiveItem(null);
+        SetActiveItemData(null);
+        OnItemPlaced?.Invoke();
         return true;
     }
 
-    public void SetActiveItem(IInteractable activeItem)
+    public void SetActiveItemData(InteractableData activeItemData)
     {
-        readyToPlaceItem = activeItem;
+        itemToPlaceData = activeItemData;
     }
 
     private bool InteractWithUI()

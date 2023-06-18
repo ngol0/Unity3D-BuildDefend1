@@ -10,12 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9778f886a31d5064fbd7de7e3d1c5a21, type: 3}
-  m_Name: FarmHouse
+  m_Name: HQ_House
   m_EditorClassIdentifier: 
   nameString: 
-  towerPrefab: {fileID: 2692347782462392737, guid: 0e8082481fccffc48899a492762eda50, type: 3}
-  ghostPrefab: {fileID: 0}
-  sprite: {fileID: 21300000, guid: dae33700bd23f76409a80bf78fdb8a42, type: 3}
+  housePrefab: {fileID: 1376608579, guid: b8970a8337cd0b9479d4ca1972451344, type: 3}
+  sprite: {fileID: 21300000, guid: 70632ddfe8e71b04b8f90ef7e29a9e98, type: 3}
   resourceData:
     timerMax: 0
     resourceType: {fileID: 0}

@@ -2,12 +2,12 @@ using UnityEngine;
 using Lam.DefenderBuilder.Tower;
 using UnityEngine.Events;
 
-public class TowerTypeEventListener : MonoBehaviour
+public class InteractableTypeEventListener : MonoBehaviour
 {
-    public TowerTypeEvent Event;
-    public MyTowerEvent UnitEventResponse;
+    public InteractableTypeEvent Event;
+    public MyInteractableDataEvent UnitEventResponse;
 
-    public void OnEventRaised(HouseData item)
+    public void OnEventRaised(InteractableData item)
     {
         UnitEventResponse?.Invoke(item);
     }
@@ -20,7 +20,7 @@ public class TowerTypeEventListener : MonoBehaviour
 }
 
 [System.Serializable]
-public class MyTowerEvent : UnityEvent<HouseData>
+public class MyInteractableDataEvent : UnityEvent<InteractableData>
 {
 }
 

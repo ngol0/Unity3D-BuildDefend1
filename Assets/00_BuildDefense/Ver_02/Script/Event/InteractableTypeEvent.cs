@@ -4,21 +4,21 @@ using UnityEngine;
 using Lam.DefenderBuilder.Tower;
 
 [CreateAssetMenu(menuName = "CustomizedEvents/HouseTypeEvent")]
-public class TowerTypeEvent : ScriptableObject
+public class InteractableTypeEvent : ScriptableObject
 {
-    private List<TowerTypeEventListener> listeners =
-        new List<TowerTypeEventListener>();
+    private List<InteractableTypeEventListener> listeners =
+        new List<InteractableTypeEventListener>();
 
-    public void Raise(HouseData unit)
+    public void Raise(InteractableData unit)
     {
         //Debug.Log(":::Raise?");
         for (int i = listeners.Count - 1; i >= 0; i--)
             listeners[i].OnEventRaised(unit);
     }
     
-    public void RegisterListener(TowerTypeEventListener listener)
+    public void RegisterListener(InteractableTypeEventListener listener)
     { listeners.Add(listener); }
 
-    public void UnregisterListener(TowerTypeEventListener listener)
+    public void UnregisterListener(InteractableTypeEventListener listener)
     { listeners.Remove(listener); }
 }

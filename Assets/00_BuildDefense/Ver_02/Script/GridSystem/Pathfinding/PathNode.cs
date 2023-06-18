@@ -18,8 +18,7 @@ public class PathNode
     private PathNode cameFromNode;
     public PathNode CameFromNode => cameFromNode;
 
-    private bool isWalkable = true;
-    public bool IsWalkable => isWalkable;
+    private IObject item;
 
     public PathNode(GridSystem<PathNode> gridSystem, GridPosition gridPosition)
     {
@@ -52,8 +51,13 @@ public class PathNode
         return fCost = hCost + gCost;
     }
 
-    public void SetWalkable(bool isWalkable)
+    public void SetItem(IObject item)
     {
-        this.isWalkable = isWalkable;
+        this.item = item;
+    }
+
+    public bool IsWalkable()
+    {
+        return item==null;
     }
 }

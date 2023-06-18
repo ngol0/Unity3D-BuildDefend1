@@ -9,6 +9,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f5f21df8e907f334e82b5502c9b8b0cb, type: 3}
-  m_Name: OnTowerBtnClicked
+  m_Script: {fileID: 11500000, guid: 622547c702e365c46a0a5dabcd0bc8f9, type: 3}
+  m_Name: GridStats
   m_EditorClassIdentifier: 
+  gridWidth: 10
+  gridHeight: 7
+  cellSize: 10
+  obstacleMask:
+    serializedVersion: 2
+    m_Bits: 1792

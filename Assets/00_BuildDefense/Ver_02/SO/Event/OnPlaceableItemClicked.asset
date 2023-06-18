@@ -9,9 +9,6 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3b8a19c41f939ff4da0496195dfa360a, type: 3}
-  m_Name: PlaceableObj
+  m_Script: {fileID: 11500000, guid: f5f21df8e907f334e82b5502c9b8b0cb, type: 3}
+  m_Name: OnPlaceableItemClicked
   m_EditorClassIdentifier: 
-  objName: Tank
-  prefab: {fileID: -1097294237071409920, guid: 94b3ed799f64c5a4a8d4bd36c515f477, type: 3}
-  description: 
