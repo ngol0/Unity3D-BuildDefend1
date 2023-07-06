@@ -6,7 +6,7 @@ public class InteractableData : ScriptableObject
 {
     public string nameString; //name of tower
 
-    public IInteractable housePrefab; //prefab of tower to init
+    public IInteractable prefab; //prefab of tower to init
     //public GameObject ghostPrefab; //prefab of tower to init
     public Sprite sprite;
 }

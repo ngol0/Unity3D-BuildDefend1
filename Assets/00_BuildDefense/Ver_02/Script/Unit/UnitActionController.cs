@@ -7,14 +7,19 @@ public class UnitActionController : MonoBehaviour
     Unit selectedUnit;
     [SerializeField] Pathfinding pathfinding;
 
+    public System.Action<bool> OnSelectedUnit;
+
     public void SetSelectedUnit(IInteractable item)
     {
         if (item != null && item.IsMoveable)
         {
             selectedUnit = item as Unit;
-            return;
         }
-        selectedUnit = null;
+        else
+        {
+            selectedUnit = null;
+        }
+        OnSelectedUnit?.Invoke(selectedUnit!=null);
     }
 
     public void MoveAhead()

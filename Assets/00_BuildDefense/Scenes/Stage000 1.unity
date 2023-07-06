@@ -370,6 +370,7 @@ MonoBehaviour:
   buttonPrefab: {fileID: 8181877510718817184}
   rootSpawn: {fileID: 649470031}
   baseHouseList: {fileID: 11400000, guid: 9361660a5ad4028438776d5eea6bff66, type: 2}
+  guiMain: {fileID: 1097124580}
   gameplayLogic: {fileID: 761233752}
 --- !u!1 &292277622
 GameObject:
@@ -1057,7 +1058,6 @@ GameObject:
   m_Component:
   - component: {fileID: 633429239}
   - component: {fileID: 633429238}
-  - component: {fileID: 633429240}
   m_Layer: 0
   m_Name: EventListener
   m_TagString: Untagged
@@ -1081,9 +1081,9 @@ MonoBehaviour:
   UnitEventResponse:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 140911971346689202}
-        m_TargetAssemblyTypeName: UnitActionControllerUI, Assembly-CSharp
-        m_MethodName: SetUnitControllerActive
+      - m_Target: {fileID: 1732775456}
+        m_TargetAssemblyTypeName: UnitActionController, Assembly-CSharp
+        m_MethodName: SetSelectedUnit
         m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1093,9 +1093,21 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 1732775456}
-        m_TargetAssemblyTypeName: UnitActionController, Assembly-CSharp
-        m_MethodName: SetSelectedUnit
+      - m_Target: {fileID: 951142176}
+        m_TargetAssemblyTypeName: ShopPanel, Assembly-CSharp
+        m_MethodName: SetPanelActive
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 281897409}
+        m_TargetAssemblyTypeName: PlaceableItemPanel, Assembly-CSharp
+        m_MethodName: SetGUIActive
         m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1120,34 +1132,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 19
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &633429240
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 633429237}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0fd03e9c8cb9b1f4f9dd2026cca3001a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Event: {fileID: 11400000, guid: 1b00a91befbcbe04c8717d28e8cb03ad, type: 2}
-  UnitEventResponse:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 761233752}
-        m_TargetAssemblyTypeName: GameplayController, Assembly-CSharp
-        m_MethodName: SetActiveItemData
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
 --- !u!1 &649470030
 GameObject:
   m_ObjectHideFlags: 0
@@ -1423,7 +1407,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &781602016
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1935,8 +1919,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 951142175}
+  - component: {fileID: 951142176}
   m_Layer: 5
-  m_Name: BuyableItemPanel
+  m_Name: ShopPanel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1963,6 +1948,21 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &951142176
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 951142174}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bce31ab505361df4487cc391bb876531, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  guiMain: {fileID: 781602015}
+  buttonPrefab: {fileID: 579234840856622865, guid: 61d6148920f912e468ff0420f494f886, type: 3}
+  rootSpawn: {fileID: 826812398}
 --- !u!1 &963137734
 GameObject:
   m_ObjectHideFlags: 0
@@ -2080,7 +2080,7 @@ Camera:
     height: 1
   near clip plane: 0.3
   far clip plane: 908.3
-  field of view: 30.00113
+  field of view: 30.00006
   orthographic: 0
   orthographic size: 64.73
   m_Depth: -1
@@ -3761,7 +3761,7 @@ MonoBehaviour:
   m_LookAt: {fileID: 0}
   m_Follow: {fileID: 593705369}
   m_Lens:
-    FieldOfView: 30.00113
+    FieldOfView: 30.00006
     OrthographicSize: 64.73
     NearClipPlane: 0.3
     FarClipPlane: 908.3
@@ -4040,6 +4040,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   guiMain: {fileID: 1659396815}
+  logicController: {fileID: 1732775456}
 --- !u!1 &5602051897597229509
 GameObject:
   m_ObjectHideFlags: 0
@@ -4126,8 +4127,8 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 281897409}
-        m_TargetAssemblyTypeName: PlaceableSelectionUI, Assembly-CSharp
-        m_MethodName: CheckSelectedBtn
+        m_TargetAssemblyTypeName: PlaceableItemPanel, Assembly-CSharp
+        m_MethodName: SetPlaceableItem
         m_Mode: 2
         m_Arguments:
           m_ObjectArgument: {fileID: 8181877510718817184}

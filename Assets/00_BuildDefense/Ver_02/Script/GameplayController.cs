@@ -16,6 +16,7 @@ public class GameplayController : MonoBehaviour
     [Header("Event to raise")]
     [SerializeField] InteractableEvent OnItemSelected;
     public System.Action OnItemPlaced;
+    public System.Action OnCancelPlacedItem;
 
 
     IInteractable selectedItem;
@@ -25,8 +26,14 @@ public class GameplayController : MonoBehaviour
     {
         if (Input.GetMouseButtonDown(0))
         {
-            if (InteractWithUI()) return;
-            if (TryPlaceItemAtGrid()) return;
+            if (InteractWithUI()) 
+            {
+                return;
+            }
+            if (TryPlaceItemAtGrid()) 
+            {
+                return;
+            }
             TrySelectItem();
         }
     }
@@ -38,7 +45,11 @@ public class GameplayController : MonoBehaviour
         RaycastHit hitData;
         if (Physics.Raycast(ray, out hitData, float.MaxValue, interactableMask))
         {
-            selectedItem = (hitData.transform.TryGetComponent<IInteractable>(out IInteractable item)) ? item : null;
+            if (hitData.transform.TryGetComponent<IInteractable>(out IInteractable item))
+            {
+                selectedItem = item;
+                CancelPlaceableItem();
+            }
         }
         else
         {
@@ -69,7 +80,7 @@ public class GameplayController : MonoBehaviour
             if (!gridItem.IsPlaceable()) return false;
 
             IInteractable item = Instantiate
-                (itemToPlaceData.housePrefab, 
+                (itemToPlaceData.prefab, 
                 playGrid.GetWorldPosition(gridPos), Quaternion.identity);
                 
             gridItem.SetItem(item); //update placeable at grid position
@@ -78,14 +89,21 @@ public class GameplayController : MonoBehaviour
             item.SetGridData(playGrid);
         }
 
-        SetActiveItemData(null);
+        SetPlaceableItem(null);
         OnItemPlaced?.Invoke();
         return true;
     }
 
-    public void SetActiveItemData(InteractableData activeItemData)
+    //set item to place into grid
+    public void SetPlaceableItem(InteractableData activeItemData)
     {
         itemToPlaceData = activeItemData;
+    }
+
+    private void CancelPlaceableItem()
+    {
+        itemToPlaceData = null;
+        OnCancelPlacedItem?.Invoke();
     }
 
     private bool InteractWithUI()

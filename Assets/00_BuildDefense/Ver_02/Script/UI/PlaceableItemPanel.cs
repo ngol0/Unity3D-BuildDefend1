@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -7,6 +8,7 @@ public class PlaceableItemPanel : MonoBehaviour
     [SerializeField] PlaceableButtonUI buttonPrefab;
     [SerializeField] Transform rootSpawn;
     [SerializeField] HouseDataList baseHouseList;
+    [SerializeField] GameObject guiMain;
 
     [Header("Gameplay ref")]
     [SerializeField] GameplayController gameplayLogic;
@@ -27,15 +29,18 @@ public class PlaceableItemPanel : MonoBehaviour
 
     private void Start() 
     {
-        gameplayLogic.OnItemPlaced += Panel_OnItemPlaced;
+        gameplayLogic.OnItemPlaced += OnDonePlaced;
+        gameplayLogic.OnCancelPlacedItem += ResetUI;
     }
 
-    public void CheckSelectedBtn(PlaceableButtonUI btn)
+    public void SetPlaceableItem(PlaceableButtonUI btn)
     {
         if (btn == null) return;
         if (btn == currentButton) 
         {
-            btn.ToggleSelected();
+            currentButton.SetSelectedActive(false);
+            gameplayLogic.SetPlaceableItem(null);
+            currentButton = null;
             return;
         }
 
@@ -45,12 +50,32 @@ public class PlaceableItemPanel : MonoBehaviour
         }
         btn.SetSelectedActive(true);
         currentButton = btn;
-        gameplayLogic.SetActiveItemData(currentButton.ItemData);
+        gameplayLogic.SetPlaceableItem(currentButton.ItemData);
     }
 
-    public void Panel_OnItemPlaced()
+    private void ResetUI()
     {
+        if (currentButton == null) return;
+
+        currentButton.SetSelectedActive(false);
+        currentButton = null;
+    }
+
+    private void OnDonePlaced()
+    {
+        if (currentButton == null) return;
+
         currentButton.gameObject.SetActive(false);
         currentButton = null;
+    }
+
+    public void SetGUIActive(IInteractable item)
+    {
+        if (item != null)
+        {
+            guiMain.SetActive(false);
+            return;
+        }
+        guiMain.SetActive(true);
     }
 }

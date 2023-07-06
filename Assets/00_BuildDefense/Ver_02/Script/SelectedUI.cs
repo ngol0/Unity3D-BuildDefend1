@@ -5,14 +5,15 @@ using UnityEngine;
 public class SelectedUI : MonoBehaviour
 {   
     [SerializeField] IInteractable item;
+    [SerializeField] MeshRenderer mesh;
      private void Start() 
     {
-        gameObject.SetActive(false);
+        mesh.enabled = false;
     }
 
     public void SetSelectionUI(IInteractable selectedItem)
     {
-        if (item == selectedItem) gameObject.SetActive(true);
-        if (item == null || item != selectedItem) gameObject.SetActive(false);
+        if (item == selectedItem) mesh.enabled = true;
+        if (item == null || item != selectedItem) mesh.enabled = false;
     }
 }

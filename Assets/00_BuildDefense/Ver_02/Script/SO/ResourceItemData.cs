@@ -4,7 +4,7 @@ using UnityEngine;
 using Lam.DefenderBuilder.Resource;
 
 [CreateAssetMenu(menuName = "InteractableData/HouseType")]
-public class HouseData : InteractableData
+public class ResourceItemData : InteractableData
 {
     public ResourceGeneratorData resourceData; //number of resource to build tower
     public ResourceAmount[] resourceCostToBuild;
@@ -20,4 +20,6 @@ public class HouseData : InteractableData
         }
         return str;
     }
+
+    public InteractableData[] unitToSell;
 }

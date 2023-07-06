@@ -5,13 +5,15 @@ using UnityEngine;
 public class UnitMoveActionUI : MonoBehaviour
 {
     [SerializeField] GameObject guiMain;
-    public void SetUnitControllerActive(IInteractable item)
+    [SerializeField] UnitActionController logicController;
+
+    private void Start() 
     {
-        if (item!=null && item.IsMoveable)
-        {
-            guiMain.SetActive(true);
-            return;
-        }
-        guiMain.SetActive(false);
+        logicController.OnSelectedUnit += SetUnitControllerActive;
+    }
+
+    public void SetUnitControllerActive(bool active)
+    {
+        guiMain.SetActive(active);
     }
 }

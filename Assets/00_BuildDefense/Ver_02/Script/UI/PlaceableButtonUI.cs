@@ -30,9 +30,9 @@ public class PlaceableButtonUI : MonoBehaviour
         isSelected = active;
     }
 
-    public void ToggleSelected()
-    {
-        isSelected = !isSelected;
-        selectedBG.enabled = isSelected;
-    }
+    // public void ToggleSelected()
+    // {
+    //     isSelected = !isSelected;
+    //     selectedBG.enabled = isSelected;
+    // }
 }

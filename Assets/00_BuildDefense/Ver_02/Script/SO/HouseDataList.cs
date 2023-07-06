@@ -5,5 +5,5 @@ using UnityEngine;
 [CreateAssetMenu(menuName = "InteractableData/HouseTypeList")]
 public class HouseDataList : ScriptableObject
 {
-    public List<HouseData> list;
+    public List<ResourceItemData> list;
 }

@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 3544770983279120798}
   - component: {fileID: 2518389789829067182}
   - component: {fileID: 8706764596476744011}
-  m_Layer: 8
+  m_Layer: 10
   m_Name: UnitSelectionUI
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -112,3 +112,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   item: {fileID: 0}
+  mesh: {fileID: 3544770983279120798}

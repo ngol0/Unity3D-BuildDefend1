@@ -61,8 +61,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 3.7607093, y: 4.332115, z: 2.4576702}
-  m_Center: {x: -0.2521603, y: 1.6660571, z: 0.019809008}
+  m_Size: {x: 4.2, y: 4.5, z: 2}
+  m_Center: {x: -0.25, y: 1.6, z: 0}
 --- !u!114 &8055384515331067430
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -378,10 +378,6 @@ PrefabInstance:
     - target: {fileID: 9198084897189856559, guid: a7c9ef6991ead4076987525805022874, type: 3}
       propertyPath: m_Name
       value: UnitSelectionUI
-      objectReference: {fileID: 0}
-    - target: {fileID: 9198084897189856559, guid: a7c9ef6991ead4076987525805022874, type: 3}
-      propertyPath: m_Layer
-      value: 10
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a7c9ef6991ead4076987525805022874, type: 3}
