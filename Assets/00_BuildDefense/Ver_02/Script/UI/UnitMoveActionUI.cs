@@ -4,7 +4,11 @@ using UnityEngine;
 
 public class UnitMoveActionUI : MonoBehaviour
 {
+    [Header("UI Ref")]
     [SerializeField] GameObject guiMain;
+    [SerializeField] PlayPanelUI playPanel;
+
+    [Header("Logic")]
     [SerializeField] UnitActionController logicController;
 
     private void Start() 
@@ -14,6 +18,7 @@ public class UnitMoveActionUI : MonoBehaviour
 
     public void SetUnitControllerActive(bool active)
     {
+        playPanel.gameObject.SetActive(!active);
         guiMain.SetActive(active);
     }
 }

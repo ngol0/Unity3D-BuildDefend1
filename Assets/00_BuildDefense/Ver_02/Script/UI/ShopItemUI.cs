@@ -6,10 +6,10 @@ using UnityEngine.UI;
 public class ShopItemUI : MonoBehaviour
 {
     InteractableData data;
-    ShopPanel shop;
+    ShopPanelUI shop;
 
     [SerializeField] Image spriteImg;
-    public void SetData(InteractableData data, ShopPanel shop)
+    public void SetData(InteractableData data, ShopPanelUI shop)
     {
         this.data = data;
         this.shop = shop;

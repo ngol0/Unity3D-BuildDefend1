@@ -9,7 +9,10 @@ public class GameplayController : MonoBehaviour
     [SerializeField] LayerMask interactableMask;
     [SerializeField] LayerMask gridMask;
 
-    [Header("Ref")]
+    [Header("Initial Data")]
+    public HouseDataList baseHouseList;
+
+    [Header("Grid Ref")]
     [SerializeField] PlayGrid playGrid;
     [SerializeField] Pathfinding pathFindingGrid;
 
@@ -26,15 +29,9 @@ public class GameplayController : MonoBehaviour
     {
         if (Input.GetMouseButtonDown(0))
         {
-            if (InteractWithUI()) 
-            {
-                CancelItemSelection();
-                return;
-            }
-            if (TryPlaceItemAtGrid()) 
-            {
-                return;
-            }
+            if (InteractWithUI()) return;
+            if (TryPlaceItemAtGrid()) return;
+
             TrySelectItem();
         }
     }
@@ -49,7 +46,7 @@ public class GameplayController : MonoBehaviour
             if (hitData.transform.TryGetComponent<IInteractable>(out IInteractable item))
             {
                 selectedItem = item;
-                CancelPlaceableItem();
+                CancelPlaceableItem(); //cancel chosen placeable item when select item
             }
         }
         else
@@ -59,6 +56,7 @@ public class GameplayController : MonoBehaviour
         OnItemSelected?.Raise(selectedItem);
     }
 
+    //called when item is selected but then want to place item instead
     public void CancelItemSelection()
     {
         selectedItem = null;

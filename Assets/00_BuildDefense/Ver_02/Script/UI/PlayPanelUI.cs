@@ -3,14 +3,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlaceableItemPanel : MonoBehaviour
+public class PlayPanelUI : MonoBehaviour
 {
+    [Header("UI ref")]
     [SerializeField] PlaceableButtonUI buttonPrefab;
     [SerializeField] Transform rootSpawn;
-    [SerializeField] HouseDataList baseHouseList;
     [SerializeField] GameObject guiMain;
 
-    [Header("Gameplay ref")]
+    [Header("Logic ref")]
     [SerializeField] GameplayController gameplayLogic;
 
     PlaceableButtonUI currentButton;
@@ -19,7 +19,8 @@ public class PlaceableItemPanel : MonoBehaviour
     {
         buttonPrefab.gameObject.SetActive(false);
 
-        foreach (var item in baseHouseList.list)
+        //init initial buildings
+        foreach (var item in gameplayLogic.baseHouseList.list)
         {
             var btn = Instantiate<PlaceableButtonUI>(buttonPrefab, rootSpawn);
             btn.SetData(item);
@@ -33,6 +34,7 @@ public class PlaceableItemPanel : MonoBehaviour
         gameplayLogic.OnCancelPlacedItem += ResetUI;
     }
 
+    //set current item when clicked into each item
     public void SetPlaceableItem(PlaceableButtonUI btn)
     {
         if (btn == null) return;
@@ -50,7 +52,9 @@ public class PlaceableItemPanel : MonoBehaviour
         }
         btn.SetSelectedActive(true);
         currentButton = btn;
+
         gameplayLogic.SetPlaceableItem(currentButton.ItemData);
+        gameplayLogic.CancelItemSelection();
     }
 
     private void ResetUI()
@@ -71,7 +75,6 @@ public class PlaceableItemPanel : MonoBehaviour
 
     public void InitNewItem(InteractableData data)
     {
-        Debug.Log("Eh?");
         var btn = Instantiate<PlaceableButtonUI>(buttonPrefab, rootSpawn);
         btn.SetData(data);
         btn.gameObject.SetActive(true);
