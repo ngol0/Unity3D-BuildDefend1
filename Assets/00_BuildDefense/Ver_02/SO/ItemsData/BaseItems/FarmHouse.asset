@@ -23,4 +23,4 @@ MonoBehaviour:
   resourceCostToBuild: []
   healthAmountMax: 0
   unitToSell:
-  - {fileID: 11400000, guid: b99e762ca8f040e428cedbb0ac5652ca, type: 2}
+  - {fileID: 11400000, guid: 8c251019e4bf7e04f877e559069aeda2, type: 2}

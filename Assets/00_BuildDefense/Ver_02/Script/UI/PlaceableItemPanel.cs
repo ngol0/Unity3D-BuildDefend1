@@ -69,13 +69,11 @@ public class PlaceableItemPanel : MonoBehaviour
         currentButton = null;
     }
 
-    public void SetGUIActive(IInteractable item)
+    public void InitNewItem(InteractableData data)
     {
-        if (item != null)
-        {
-            guiMain.SetActive(false);
-            return;
-        }
-        guiMain.SetActive(true);
+        Debug.Log("Eh?");
+        var btn = Instantiate<PlaceableButtonUI>(buttonPrefab, rootSpawn);
+        btn.SetData(data);
+        btn.gameObject.SetActive(true);
     }
 }

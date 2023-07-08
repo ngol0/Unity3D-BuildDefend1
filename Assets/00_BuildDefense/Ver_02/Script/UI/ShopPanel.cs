@@ -4,37 +4,28 @@ using UnityEngine;
 
 public class ShopPanel : MonoBehaviour
 {
-    [SerializeField] GameObject guiMain;
-    [SerializeField] ShopItemUI buttonPrefab;
-    [SerializeField] Transform rootSpawn;
     ResourceItem selectedItem;
+    public ResourceItem SelectedItem => selectedItem;
+    [SerializeField] PlaceableItemPanel placeablePanel;
 
-    public void SetPanelActive(IInteractable item)
+    public System.Action OnGetSelectedItem;
+
+    public void SetSelectedItem(IInteractable item)
     {
-        if (item!=null && !item.IsMoveable)
+        if (item != null && !item.IsMoveable)
         {
             selectedItem = item as ResourceItem;
-            Debug.Log(selectedItem.name);
-            guiMain.SetActive(true);
-            InitItems();
-            return;
         }
-        guiMain.SetActive(false);
+        else
+        {
+            selectedItem = null;
+        }
+        OnGetSelectedItem?.Invoke();
     }
 
-    public void InitItems()
+    public void OnTransaction(InteractableData itemData)
     {
-        foreach (Transform item in rootSpawn)
-        {
-            Destroy(item.gameObject);
-        }
-
-        foreach (var item in selectedItem.Data.unitToSell)
-        {
-            Debug.Log(item.name);
-            var btn = Instantiate<ShopItemUI>(buttonPrefab, rootSpawn);
-            btn.SetData(item);
-            btn.gameObject.SetActive(true);
-        }
+        Debug.Log("EEEh");
+        placeablePanel.InitNewItem(itemData);
     }
 }

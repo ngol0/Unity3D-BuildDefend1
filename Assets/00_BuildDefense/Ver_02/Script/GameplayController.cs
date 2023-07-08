@@ -28,6 +28,7 @@ public class GameplayController : MonoBehaviour
         {
             if (InteractWithUI()) 
             {
+                CancelItemSelection();
                 return;
             }
             if (TryPlaceItemAtGrid()) 

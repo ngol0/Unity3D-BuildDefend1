@@ -24,4 +24,3 @@ MonoBehaviour:
   healthAmountMax: 0
   unitToSell:
   - {fileID: 11400000, guid: 8c251019e4bf7e04f877e559069aeda2, type: 2}
-  - {fileID: 11400000, guid: 63a7ff77c665ff7468319557800c8b21, type: 2}

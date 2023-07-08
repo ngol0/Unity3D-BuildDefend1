@@ -1093,21 +1093,9 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 951142176}
+      - m_Target: {fileID: 951142178}
         m_TargetAssemblyTypeName: ShopPanel, Assembly-CSharp
-        m_MethodName: SetPanelActive
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 281897409}
-        m_TargetAssemblyTypeName: PlaceableItemPanel, Assembly-CSharp
-        m_MethodName: SetGUIActive
+        m_MethodName: SetSelectedItem
         m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1919,7 +1907,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 951142175}
-  - component: {fileID: 951142176}
+  - component: {fileID: 951142177}
+  - component: {fileID: 951142178}
   m_Layer: 5
   m_Name: ShopPanel
   m_TagString: Untagged
@@ -1948,7 +1937,23 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &951142176
+--- !u!114 &951142177
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 951142174}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ea3a9b86ab86b084fbc7bf385432a5e8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  guiMain: {fileID: 781602015}
+  buttonPrefab: {fileID: 579234840856622865, guid: 61d6148920f912e468ff0420f494f886, type: 3}
+  rootSpawn: {fileID: 826812398}
+  shop: {fileID: 951142178}
+--- !u!114 &951142178
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1960,9 +1965,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bce31ab505361df4487cc391bb876531, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  guiMain: {fileID: 781602015}
-  buttonPrefab: {fileID: 579234840856622865, guid: 61d6148920f912e468ff0420f494f886, type: 3}
-  rootSpawn: {fileID: 826812398}
+  placeablePanel: {fileID: 281897409}
 --- !u!1 &963137734
 GameObject:
   m_ObjectHideFlags: 0
