@@ -20,21 +20,14 @@ public class PlayGrid : GridBase
         InitialSetUp();
     }
 
-    public override void SetItem(IObject item, GridPosition gridPos)
+    public override void SetItemAtGrid(IObject item, GridPosition gridPos)
     {
         GetGridItem(gridPos).SetItem(item);
     }
     
-    public void RemoveItemAtGrid(GridPosition gridPosition)
+    public void RemoveItemAtGrid(GridPosition gridPos)
     {
-        GridItem gridItem = GetGridItem(gridPosition);
-        gridItem.SetItem(null);
-    }
-
-    public void SetItemAtGrid(IInteractable item, GridPosition gridPosition)
-    {
-        GridItem gridItem = GetGridItem(gridPosition);
-        gridItem.SetItem(item);
+        GetGridItem(gridPos).SetItem(null);
     }
 
     public void ItemMoveGridPosition(IInteractable item, GridPosition fromGridPos, GridPosition toGridPos)

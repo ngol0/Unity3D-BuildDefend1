@@ -9,42 +9,39 @@ public class ShopPanelUI : MonoBehaviour
     [SerializeField] ShopItemUI buttonPrefab;
     [SerializeField] Transform rootSpawn;
 
-    [Header("Play Panel")]
-    [SerializeField] PlayPanelUI playPanel;
+    [Header("Shop")]
+    [SerializeField] Shop shop;
 
-    ResourceItem selectedItem;
-    public ResourceItem SelectedItem => selectedItem;
-
-    public void SetSelectedItem(IInteractable item)
+    private void Start() 
     {
-        if (item != null && !item.IsMoveable)
+        shop.OnSelectedResourceItem += SetUI;
+    }
+    public void SetUI(ResourceItem item)
+    {
+        if (item!=null)
         {
-            selectedItem = item as ResourceItem;
             guiMain.SetActive(true);
-            InitItems();
-            return;
+            InitItems(item);
         }
-        guiMain.SetActive(false);
+        else
+        {
+            guiMain.SetActive(false);
+        }
     }
 
     //init items to sell in the selected item
-    public void InitItems()
+    public void InitItems(ResourceItem resourceItem)
     {
         foreach (Transform item in rootSpawn)
         {
             Destroy(item.gameObject);
         }
 
-        foreach (var item in selectedItem.Data.unitToSell)
+        foreach (var item in resourceItem.Data.unitToSell)
         {
             var btn = Instantiate<ShopItemUI>(buttonPrefab, rootSpawn);
-            btn.SetData(item, this);
+            btn.SetData(item, shop);
             btn.gameObject.SetActive(true);
         }
-    }
-
-    public void OnTransaction(InteractableData itemData)
-    {
-        playPanel.InitNewItem(itemData);
     }
 }

@@ -7,8 +7,6 @@ public class Unit : IInteractable
     private GridPosition curGridPos;
     public GridPosition CurGridPos => curGridPos;
     BaseAction[] actionArrays;
-
-    public override bool IsMoveable => true;
     
 
     //----TESTING---//

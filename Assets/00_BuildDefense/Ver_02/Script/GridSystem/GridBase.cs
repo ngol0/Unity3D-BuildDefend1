@@ -18,7 +18,7 @@ public abstract class GridBase : MonoBehaviour
                 {
                     if (hitData.transform.TryGetComponent<IObject>(out IObject item))
                     {
-                        SetItem(item, gridPos);
+                        SetItemAtGrid(item, gridPos);
                     }
                 }
             }
@@ -27,5 +27,5 @@ public abstract class GridBase : MonoBehaviour
 
     public abstract GridPosition GetGridPosition(Vector3 worldPos);
     public abstract Vector3 GetWorldPosition(GridPosition gridPos);
-    public abstract void SetItem(IObject item, GridPosition gridPos);
+    public abstract void SetItemAtGrid(IObject item, GridPosition gridPos);
 }

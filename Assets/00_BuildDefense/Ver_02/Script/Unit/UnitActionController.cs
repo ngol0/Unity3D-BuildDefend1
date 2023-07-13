@@ -11,7 +11,7 @@ public class UnitActionController : MonoBehaviour
 
     public void SetSelectedUnit(IInteractable item)
     {
-        if (item != null && item.IsMoveable)
+        if (item is Unit)
         {
             selectedUnit = item as Unit;
         }

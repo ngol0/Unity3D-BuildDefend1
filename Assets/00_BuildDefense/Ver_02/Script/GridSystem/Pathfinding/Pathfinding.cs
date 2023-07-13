@@ -30,7 +30,7 @@ public class Pathfinding : GridBase
         InitialSetUp();
     }
 
-    public override void SetItem(IObject item, GridPosition gridPos)
+    public override void SetItemAtGrid(IObject item, GridPosition gridPos)
     {
         GetNode(gridPos).SetItem(item);
     }

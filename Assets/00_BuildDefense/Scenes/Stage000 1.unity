@@ -328,7 +328,7 @@ GameObject:
   - component: {fileID: 281897408}
   - component: {fileID: 281897409}
   m_Layer: 5
-  m_Name: PlaceableItemPanel
+  m_Name: PlayPanel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -367,7 +367,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e76d8c81ee7eb6f459810485e79bda84, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  baseHouseList: {fileID: 11400000, guid: 9361660a5ad4028438776d5eea6bff66, type: 2}
   buttonPrefab: {fileID: 8181877510718817184}
   rootSpawn: {fileID: 649470031}
   guiMain: {fileID: 1097124580}
@@ -1377,6 +1376,7 @@ MonoBehaviour:
   gridMask:
     serializedVersion: 2
     m_Bits: 128
+  baseHouseList: {fileID: 11400000, guid: 9361660a5ad4028438776d5eea6bff66, type: 2}
   playGrid: {fileID: 1654398830}
   pathFindingGrid: {fileID: 786488377}
   OnItemSelected: {fileID: 11400000, guid: dd5c77286ca704cd0bcd79ee4ed2871d, type: 2}
@@ -1907,7 +1907,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 951142175}
-  - component: {fileID: 951142177}
   - component: {fileID: 951142178}
   m_Layer: 5
   m_Name: ShopPanel
@@ -1937,18 +1936,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &951142177
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 951142174}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ea3a9b86ab86b084fbc7bf385432a5e8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &951142178
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1961,10 +1948,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bce31ab505361df4487cc391bb876531, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  guiMain: {fileID: 0}
-  buttonPrefab: {fileID: 0}
-  rootSpawn: {fileID: 0}
-  placeablePanel: {fileID: 281897409}
+  guiMain: {fileID: 781602015}
+  buttonPrefab: {fileID: 579234840856622865, guid: 61d6148920f912e468ff0420f494f886, type: 3}
+  rootSpawn: {fileID: 826812398}
+  playPanel: {fileID: 281897409}
 --- !u!1 &963137734
 GameObject:
   m_ObjectHideFlags: 0
@@ -4042,6 +4029,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   guiMain: {fileID: 1659396815}
+  playPanel: {fileID: 281897409}
   logicController: {fileID: 1732775456}
 --- !u!1 &5602051897597229509
 GameObject:

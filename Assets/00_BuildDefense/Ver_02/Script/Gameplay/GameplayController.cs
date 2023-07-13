@@ -10,7 +10,7 @@ public class GameplayController : MonoBehaviour
     [SerializeField] LayerMask gridMask;
 
     [Header("Initial Data")]
-    public HouseDataList baseHouseList;
+    public ResourceItemDataList baseHouseList;
 
     [Header("Grid Ref")]
     [SerializeField] PlayGrid playGrid;
@@ -20,7 +20,6 @@ public class GameplayController : MonoBehaviour
     [SerializeField] InteractableEvent OnItemSelected;
     public System.Action OnItemPlaced;
     public System.Action OnCancelPlacedItem;
-
 
     IInteractable selectedItem;
     InteractableData itemToPlaceData;
