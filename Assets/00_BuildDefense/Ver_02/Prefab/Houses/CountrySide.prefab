@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 3321110776479683355}
   - component: {fileID: 566054652}
   - component: {fileID: 6189902045823958776}
-  - component: {fileID: 4408529192113670088}
+  - component: {fileID: 8978038373746755110}
   m_Layer: 8
   m_Name: CountrySide
   m_TagString: Untagged
@@ -62,7 +62,7 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 10.09, y: 4.25, z: 5.03}
   m_Center: {x: 0, y: 1.5, z: 0}
---- !u!114 &4408529192113670088
+--- !u!114 &8978038373746755110
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}

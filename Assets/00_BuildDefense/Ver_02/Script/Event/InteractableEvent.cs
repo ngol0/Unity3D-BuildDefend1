@@ -8,7 +8,7 @@ public class InteractableEvent : ScriptableObject
     private List<InteractableEventListener> listeners =
         new List<InteractableEventListener>();
 
-    public void Raise(IInteractable unit)
+    public void Raise(InteractableItem unit)
     {
         //Debug.Log(":::Raise?");
         for (int i = listeners.Count - 1; i >= 0; i--)

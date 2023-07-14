@@ -14,9 +14,10 @@ public abstract class GridBase : MonoBehaviour
             {
                 GridPosition gridPos = new GridPosition(x,z);
                 RaycastHit hitData;
-                if (Physics.Raycast(GetWorldPosition(gridPos) + Vector3.down * 10f, Vector3.up, out hitData, 20f, gridStats.obstacleMask)) 
+                if (Physics.Raycast(
+                    GetWorldPosition(gridPos) + Vector3.down * 10f, Vector3.up, out hitData, 20f, gridStats.obstacleMask)) 
                 {
-                    if (hitData.transform.TryGetComponent<IObject>(out IObject item))
+                    if (hitData.transform.TryGetComponent<IGameItem>(out IGameItem item))
                     {
                         SetItemAtGrid(item, gridPos);
                     }
@@ -27,5 +28,5 @@ public abstract class GridBase : MonoBehaviour
 
     public abstract GridPosition GetGridPosition(Vector3 worldPos);
     public abstract Vector3 GetWorldPosition(GridPosition gridPos);
-    public abstract void SetItemAtGrid(IObject item, GridPosition gridPos);
+    public abstract void SetItemAtGrid(IGameItem item, GridPosition gridPos);
 }

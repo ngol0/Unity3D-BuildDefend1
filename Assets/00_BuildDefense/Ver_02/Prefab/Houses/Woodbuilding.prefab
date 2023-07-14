@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 4310472775481811858}
   - component: {fileID: 6007245915561076696}
   - component: {fileID: 468204535720522175}
-  - component: {fileID: 4537845214934982176}
+  - component: {fileID: 1760750426539288198}
   m_Layer: 8
   m_Name: Woodbuilding
   m_TagString: Untagged
@@ -62,7 +62,7 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 5.09, y: 5.1, z: 6}
   m_Center: {x: 0, y: 2.72, z: 0}
---- !u!114 &4537845214934982176
+--- !u!114 &1760750426539288198
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}

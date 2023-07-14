@@ -6,7 +6,7 @@ public class UnitMoveActionUI : MonoBehaviour
 {
     [Header("UI Ref")]
     [SerializeField] GameObject guiMain;
-    [SerializeField] PlayPanelUI playPanel;
+    [SerializeField] InventoryUI playPanel;
 
     [Header("Logic")]
     [SerializeField] UnitActionController logicController;

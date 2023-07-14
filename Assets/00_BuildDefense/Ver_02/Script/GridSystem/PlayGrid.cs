@@ -20,7 +20,7 @@ public class PlayGrid : GridBase
         InitialSetUp();
     }
 
-    public override void SetItemAtGrid(IObject item, GridPosition gridPos)
+    public override void SetItemAtGrid(IGameItem item, GridPosition gridPos)
     {
         GetGridItem(gridPos).SetItem(item);
     }
@@ -30,7 +30,7 @@ public class PlayGrid : GridBase
         GetGridItem(gridPos).SetItem(null);
     }
 
-    public void ItemMoveGridPosition(IInteractable item, GridPosition fromGridPos, GridPosition toGridPos)
+    public void ItemMoveGridPosition(InteractableItem item, GridPosition fromGridPos, GridPosition toGridPos)
     {
         RemoveItemAtGrid(fromGridPos);
         SetItemAtGrid(item, toGridPos);

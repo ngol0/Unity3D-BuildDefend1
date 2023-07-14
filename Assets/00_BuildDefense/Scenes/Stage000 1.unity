@@ -370,7 +370,8 @@ MonoBehaviour:
   buttonPrefab: {fileID: 8181877510718817184}
   rootSpawn: {fileID: 649470031}
   guiMain: {fileID: 1097124580}
-  gameplayLogic: {fileID: 761233752}
+  gameplayLogic: {fileID: 889075751}
+  inventory: {fileID: 11400000, guid: 9361660a5ad4028438776d5eea6bff66, type: 2}
 --- !u!1 &292277622
 GameObject:
   m_ObjectHideFlags: 0
@@ -484,7 +485,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &301185909
 Transform:
   m_ObjectHideFlags: 0
@@ -498,7 +499,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 20
+  m_RootOrder: 18
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &305026099
 GameObject:
@@ -664,7 +665,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1732775456}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: UnitActionController, Assembly-CSharp
         m_MethodName: StopUnit
         m_Mode: 1
@@ -793,7 +794,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 18
+  m_RootOrder: 15
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &593705366
 GameObject:
@@ -1080,7 +1081,7 @@ MonoBehaviour:
   UnitEventResponse:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1732775456}
+      - m_Target: {fileID: 140911971346689203}
         m_TargetAssemblyTypeName: UnitActionController, Assembly-CSharp
         m_MethodName: SetSelectedUnit
         m_Mode: 0
@@ -1092,8 +1093,8 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 951142178}
-        m_TargetAssemblyTypeName: ShopPanel, Assembly-CSharp
+      - m_Target: {fileID: 951142179}
+        m_TargetAssemblyTypeName: Shop, Assembly-CSharp
         m_MethodName: SetSelectedItem
         m_Mode: 0
         m_Arguments:
@@ -1117,7 +1118,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 19
+  m_RootOrder: 16
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &649470030
 GameObject:
@@ -1326,60 +1327,6 @@ Transform:
   m_Father: {fileID: 2131956321}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &761233750
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 761233751}
-  - component: {fileID: 761233752}
-  m_Layer: 0
-  m_Name: GameplayController
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &761233751
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 761233750}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 16
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &761233752
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 761233750}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7b55036f76ed47d47972da8a073dbdc7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  interactableMask:
-    serializedVersion: 2
-    m_Bits: 1280
-  gridMask:
-    serializedVersion: 2
-    m_Bits: 128
-  baseHouseList: {fileID: 11400000, guid: 9361660a5ad4028438776d5eea6bff66, type: 2}
-  playGrid: {fileID: 1654398830}
-  pathFindingGrid: {fileID: 786488377}
-  OnItemSelected: {fileID: 11400000, guid: dd5c77286ca704cd0bcd79ee4ed2871d, type: 2}
 --- !u!1 &781602015
 GameObject:
   m_ObjectHideFlags: 0
@@ -1551,7 +1498,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 761233752}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: SelectionController, Assembly-CSharp
         m_MethodName: CancelItemSelection
         m_Mode: 1
@@ -1810,7 +1757,7 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 833425425}
   m_CullTransparentMesh: 1
---- !u!1 &924453618
+--- !u!1 &889075750
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1818,28 +1765,51 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 924453619}
+  - component: {fileID: 889075752}
+  - component: {fileID: 889075751}
   m_Layer: 0
-  m_Name: --------CONTROLLER----------------------
+  m_Name: GameplayController
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &924453619
+--- !u!114 &889075751
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 889075750}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7b55036f76ed47d47972da8a073dbdc7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  interactableMask:
+    serializedVersion: 2
+    m_Bits: 1280
+  gridMask:
+    serializedVersion: 2
+    m_Bits: 128
+  inventory: {fileID: 0}
+  playGrid: {fileID: 1654398830}
+  pathFindingGrid: {fileID: 786488377}
+  OnItemSelected: {fileID: 11400000, guid: dd5c77286ca704cd0bcd79ee4ed2871d, type: 2}
+--- !u!4 &889075752
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 924453618}
+  m_GameObject: {fileID: 889075750}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 15
+  m_RootOrder: 17
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &950505682
 PrefabInstance:
@@ -1908,6 +1878,7 @@ GameObject:
   m_Component:
   - component: {fileID: 951142175}
   - component: {fileID: 951142178}
+  - component: {fileID: 951142179}
   m_Layer: 5
   m_Name: ShopPanel
   m_TagString: Untagged
@@ -1929,7 +1900,7 @@ RectTransform:
   m_Children:
   - {fileID: 781602016}
   m_Father: {fileID: 140911969332157848}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
@@ -1951,7 +1922,20 @@ MonoBehaviour:
   guiMain: {fileID: 781602015}
   buttonPrefab: {fileID: 579234840856622865, guid: 61d6148920f912e468ff0420f494f886, type: 3}
   rootSpawn: {fileID: 826812398}
-  playPanel: {fileID: 281897409}
+  shop: {fileID: 951142179}
+--- !u!114 &951142179
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 951142174}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2cc7ad2d508265b47aa7e512fc46be6f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  inventory: {fileID: 11400000, guid: 9361660a5ad4028438776d5eea6bff66, type: 2}
 --- !u!1 &963137734
 GameObject:
   m_ObjectHideFlags: 0
@@ -3285,7 +3269,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1732775456}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: UnitActionController, Assembly-CSharp
         m_MethodName: MoveUp
         m_Mode: 1
@@ -3313,7 +3297,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1604407919
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3344,7 +3328,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 21
+  m_RootOrder: 19
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1654398829
 GameObject:
@@ -3568,51 +3552,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8feababef96e84124938693c24589436, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!1 &1732775455
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1732775457}
-  - component: {fileID: 1732775456}
-  m_Layer: 0
-  m_Name: UnitActionController
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &1732775456
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1732775455}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7a13e0aba17624ccfa0b36150235b451, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  pathfinding: {fileID: 786488377}
---- !u!4 &1732775457
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1732775455}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 17
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1805743419
 GameObject:
   m_ObjectHideFlags: 0
@@ -3831,8 +3770,8 @@ RectTransform:
   m_LocalScale: {x: 0, y: 0, z: 0}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 951142175}
   - {fileID: 140911971346689200}
+  - {fileID: 951142175}
   - {fileID: 281897408}
   m_Father: {fileID: 0}
   m_RootOrder: 10
@@ -3966,7 +3905,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1732775456}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: UnitActionController, Assembly-CSharp
         m_MethodName: MoveAhead
         m_Mode: 1
@@ -3992,7 +3931,7 @@ RectTransform:
   m_Children:
   - {fileID: 1659396816}
   m_Father: {fileID: 140911969332157848}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
@@ -4009,6 +3948,7 @@ GameObject:
   m_Component:
   - component: {fileID: 140911971346689200}
   - component: {fileID: 140911971346689202}
+  - component: {fileID: 140911971346689203}
   m_Layer: 5
   m_Name: UnitActionPanel
   m_TagString: Untagged
@@ -4030,7 +3970,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   guiMain: {fileID: 1659396815}
   playPanel: {fileID: 281897409}
-  logicController: {fileID: 1732775456}
+  logicController: {fileID: 140911971346689203}
+--- !u!114 &140911971346689203
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 140911971346689201}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7a13e0aba17624ccfa0b36150235b451, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  pathfinding: {fileID: 786488377}
 --- !u!1 &5602051897597229509
 GameObject:
   m_ObjectHideFlags: 0

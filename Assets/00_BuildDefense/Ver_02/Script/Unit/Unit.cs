@@ -2,12 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Unit : IInteractable
+public class Unit : InteractableItem
 {
-    private GridPosition curGridPos;
-    public GridPosition CurGridPos => curGridPos;
     BaseAction[] actionArrays;
-    
 
     //----TESTING---//
     public Testing testing;
@@ -30,14 +27,6 @@ public class Unit : IInteractable
         }
     }
 
-    public override void SetGridData(PlayGrid gridSystem)
-    {
-        base.SetGridData(gridSystem);
-        curGridPos = playGrid.GetGridPosition(transform.position);
-
-        //TestingSetup();
-    }
-
     public T GetAction<T>() where T : BaseAction
     {
         foreach (BaseAction action in actionArrays)
@@ -52,6 +41,11 @@ public class Unit : IInteractable
     }
 
     //----testing----//
+    // public override void SetGridData(PlayGrid gridSystem)
+    // {
+    //     base.SetGridData(gridSystem);
+    //     TestingSetup();
+    // }
     // void TestingSetup()
     // {
     //     testing = FindObjectOfType<Testing>();

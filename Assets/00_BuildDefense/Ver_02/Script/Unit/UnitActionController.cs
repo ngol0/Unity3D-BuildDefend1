@@ -9,7 +9,7 @@ public class UnitActionController : MonoBehaviour
 
     public System.Action<bool> OnSelectedUnit;
 
-    public void SetSelectedUnit(IInteractable item)
+    public void SetSelectedUnit(InteractableItem item)
     {
         if (item is Unit)
         {
@@ -19,7 +19,7 @@ public class UnitActionController : MonoBehaviour
         {
             selectedUnit = null;
         }
-        OnSelectedUnit?.Invoke(selectedUnit!=null);
+        OnSelectedUnit?.Invoke(selectedUnit!=null); //set unit action panel ui
     }
 
     public void MoveAhead()

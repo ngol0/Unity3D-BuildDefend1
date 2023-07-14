@@ -18,7 +18,7 @@ public class PathNode
     private PathNode cameFromNode;
     public PathNode CameFromNode => cameFromNode;
 
-    private IObject item;
+    private IGameItem item;
 
     public PathNode(GridSystem<PathNode> gridSystem, GridPosition gridPosition)
     {
@@ -51,7 +51,7 @@ public class PathNode
         return fCost = hCost + gCost;
     }
 
-    public void SetItem(IObject item)
+    public void SetItem(IGameItem item)
     {
         this.item = item;
     }

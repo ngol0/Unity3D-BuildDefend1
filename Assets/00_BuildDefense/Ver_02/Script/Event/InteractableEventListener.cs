@@ -8,7 +8,7 @@ public class InteractableEventListener : MonoBehaviour
     public InteractableEvent Event;
     public MyInteractable UnitEventResponse;
 
-    public void OnEventRaised(IInteractable item)
+    public void OnEventRaised(InteractableItem item)
     {
         UnitEventResponse?.Invoke(item);
     }
@@ -21,7 +21,7 @@ public class InteractableEventListener : MonoBehaviour
 }
 
 [System.Serializable]
-public class MyInteractable : UnityEvent<IInteractable>
+public class MyInteractable : UnityEvent<InteractableItem>
 {
 }
 

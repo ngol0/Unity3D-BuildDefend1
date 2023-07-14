@@ -21,5 +21,5 @@ public class ResourceItemData : InteractableData
         return str;
     }
 
-    public InteractableData[] unitToSell;
+    public InteractableData[] itemToSell;
 }

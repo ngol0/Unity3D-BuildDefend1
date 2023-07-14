@@ -9,8 +9,8 @@ public class GameplayController : MonoBehaviour
     [SerializeField] LayerMask interactableMask;
     [SerializeField] LayerMask gridMask;
 
-    [Header("Initial Data")]
-    public ResourceItemDataList baseHouseList;
+    [Header("Inventory Data")]
+    public InventorySO inventory;
 
     [Header("Grid Ref")]
     [SerializeField] PlayGrid playGrid;
@@ -21,7 +21,7 @@ public class GameplayController : MonoBehaviour
     public System.Action OnItemPlaced;
     public System.Action OnCancelPlacedItem;
 
-    IInteractable selectedItem;
+    InteractableItem selectedItem;
     InteractableData itemToPlaceData;
 
     private void Update()
@@ -42,7 +42,7 @@ public class GameplayController : MonoBehaviour
         RaycastHit hitData;
         if (Physics.Raycast(ray, out hitData, float.MaxValue, interactableMask))
         {
-            if (hitData.transform.TryGetComponent<IInteractable>(out IInteractable item))
+            if (hitData.transform.TryGetComponent<InteractableItem>(out InteractableItem item))
             {
                 selectedItem = item;
                 CancelPlaceableItem(); //cancel chosen placeable item when select item
@@ -77,23 +77,23 @@ public class GameplayController : MonoBehaviour
 
             if (!gridItem.IsPlaceable()) return false;
 
-            IInteractable item = Instantiate
+            InteractableItem item = Instantiate
                 (itemToPlaceData.prefab, 
                 playGrid.GetWorldPosition(gridPos), Quaternion.identity);
                 
             gridItem.SetItem(item); //update placeable at grid position
-            pathNodeItem.SetItem(item);
+            pathNodeItem.SetItem(item); //update obstacles for pathfinding
 
             item.SetGridData(playGrid);
         }
 
-        SetPlaceableItem(null);
+        SetInventoryItem(null);
         OnItemPlaced?.Invoke();
         return true;
     }
 
     //set item to place into grid
-    public void SetPlaceableItem(InteractableData activeItemData)
+    public void SetInventoryItem(InteractableData activeItemData)
     {
         itemToPlaceData = activeItemData;
     }

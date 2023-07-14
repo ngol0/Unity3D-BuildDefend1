@@ -7,7 +7,9 @@ public class Shop : MonoBehaviour
     ResourceItem selectedItem;
     public System.Action<ResourceItem> OnSelectedResourceItem;
 
-    public void SetSelectedItem(IInteractable item)
+    [SerializeField] InventorySO inventory;
+
+    public void SetSelectedItem(InteractableItem item)
     {
         if (item is ResourceItem)
         {
@@ -22,6 +24,6 @@ public class Shop : MonoBehaviour
 
     public void OnTransaction(InteractableData itemData)
     {
-        //playPanel.InitNewItem(itemData);
+        inventory.AddToInteractableList(itemData);
     }
 }

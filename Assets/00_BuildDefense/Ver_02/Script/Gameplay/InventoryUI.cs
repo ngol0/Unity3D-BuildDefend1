@@ -1,9 +1,7 @@
 using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayPanelUI : MonoBehaviour
+public class InventoryUI : MonoBehaviour
 {
     [Header("UI ref")]
     [SerializeField] PlaceableButtonUI buttonPrefab;
@@ -13,6 +11,9 @@ public class PlayPanelUI : MonoBehaviour
     [Header("Logic ref")]
     [SerializeField] GameplayController gameplayLogic;
 
+    [Header("InventorySO")]
+    [SerializeField] InventorySO inventory;
+
     PlaceableButtonUI currentButton;
 
     private void Awake() 
@@ -20,7 +21,8 @@ public class PlayPanelUI : MonoBehaviour
         buttonPrefab.gameObject.SetActive(false);
 
         //init initial buildings
-        foreach (var item in gameplayLogic.baseHouseList.list)
+        if (inventory.interactableItemList.Count <= 0) return;
+        foreach (var item in inventory.interactableItemList)
         {
             var btn = Instantiate<PlaceableButtonUI>(buttonPrefab, rootSpawn);
             btn.SetData(item);
@@ -32,29 +34,31 @@ public class PlayPanelUI : MonoBehaviour
     {
         gameplayLogic.OnItemPlaced += OnDonePlaced;
         gameplayLogic.OnCancelPlacedItem += ResetUI;
+
+        inventory.OnAddComplete += InitNewItem;
     }
 
     //set current item when clicked into each item
-    public void SetPlaceableItem(PlaceableButtonUI btn)
+    public void SetActiveInventoryItem(PlaceableButtonUI btn)
     {
         if (btn == null) return;
-        if (btn == currentButton) 
+        if (btn == currentButton) //when clicked onto the selected button -> unselect
         {
             currentButton.SetSelectedActive(false);
-            gameplayLogic.SetPlaceableItem(null);
+            gameplayLogic.SetInventoryItem(null);
             currentButton = null;
             return;
         }
 
-        if (currentButton != null)
+        if (currentButton != null) //select different btn
         {
             currentButton.SetSelectedActive(false);
         }
         btn.SetSelectedActive(true);
         currentButton = btn;
 
-        gameplayLogic.SetPlaceableItem(currentButton.ItemData);
-        gameplayLogic.CancelItemSelection();
+        gameplayLogic.SetInventoryItem(currentButton.ItemData); //set item to place
+        gameplayLogic.CancelItemSelection(); //cancel item selection if one is selected
     }
 
     private void ResetUI()

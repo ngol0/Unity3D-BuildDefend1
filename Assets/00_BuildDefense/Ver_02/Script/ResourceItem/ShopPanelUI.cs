@@ -37,7 +37,7 @@ public class ShopPanelUI : MonoBehaviour
             Destroy(item.gameObject);
         }
 
-        foreach (var item in resourceItem.Data.unitToSell)
+        foreach (var item in resourceItem.Data.itemToSell)
         {
             var btn = Instantiate<ShopItemUI>(buttonPrefab, rootSpawn);
             btn.SetData(item, shop);
