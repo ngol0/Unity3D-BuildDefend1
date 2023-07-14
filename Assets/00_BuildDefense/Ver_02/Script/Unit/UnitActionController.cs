@@ -19,7 +19,7 @@ public class UnitActionController : MonoBehaviour
         {
             selectedUnit = null;
         }
-        OnSelectedUnit?.Invoke(selectedUnit!=null); //set unit action panel ui
+        OnSelectedUnit?.Invoke(selectedUnit!=null); //set unit action panel
     }
 
     public void MoveAhead()

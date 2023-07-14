@@ -7,14 +7,36 @@ public class PlaceableButtonUI : MonoBehaviour
     [Header("UI Ref")]
     [SerializeField] Image icon;
     [SerializeField] Image selectedBG;
+    [SerializeField] Image overlayBG;
+    [SerializeField] Button btn;
+
+    LoadingItem loading;
+
+    float lockInteraction = 1f;
 
     InteractableData itemData;
     public InteractableData ItemData => itemData;
     bool isSelected = false;
 
-    public void SetData(InteractableData itemData)
+    private void Awake() 
+    {
+        SetOverlayBG(lockInteraction);   
+    }
+
+    private void Update() 
+    {
+        overlayBG.fillAmount = loading.GetRemainingTime(this);
+    }
+
+    public void SetOverlayBG(float value)
+    {
+        overlayBG.fillAmount = value;
+    }
+
+    public void SetData(InteractableData itemData, LoadingItem loading)
     {
         this.itemData = itemData;
+        this.loading = loading;
         SetButtonUI();
     }
 
@@ -30,9 +52,8 @@ public class PlaceableButtonUI : MonoBehaviour
         isSelected = active;
     }
 
-    // public void ToggleSelected()
-    // {
-    //     isSelected = !isSelected;
-    //     selectedBG.enabled = isSelected;
-    // }
+    public void SetBtnInteractive(bool active)
+    {
+        btn.interactable = active;
+    }
 }

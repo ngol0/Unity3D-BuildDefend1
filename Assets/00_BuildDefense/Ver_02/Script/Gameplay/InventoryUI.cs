@@ -15,33 +15,44 @@ public class InventoryUI : MonoBehaviour
     [SerializeField] InventorySO inventory;
 
     PlaceableButtonUI currentButton;
+    LoadingItem loading;
 
     private void Awake() 
     {
         buttonPrefab.gameObject.SetActive(false);
+    }
+
+    private void OnEnable() 
+    {
+        gameplayLogic.OnItemPlaced += OnDonePlaced;
+        gameplayLogic.OnCancelPlacedItem += ResetUI;
+        inventory.OnAddComplete += InitNewItem;
+    }
+
+    private void Start() 
+    {
+        loading = GetComponent<LoadingItem>();
 
         //init initial buildings
         if (inventory.interactableItemList.Count <= 0) return;
         foreach (var item in inventory.interactableItemList)
         {
             var btn = Instantiate<PlaceableButtonUI>(buttonPrefab, rootSpawn);
-            btn.SetData(item);
+            btn.SetData(item, loading);
             btn.gameObject.SetActive(true);
+            btn.SetOverlayBG(0f);
         }
-    }
-
-    private void Start() 
-    {
-        gameplayLogic.OnItemPlaced += OnDonePlaced;
-        gameplayLogic.OnCancelPlacedItem += ResetUI;
-
-        inventory.OnAddComplete += InitNewItem;
     }
 
     //set current item when clicked into each item
     public void SetActiveInventoryItem(PlaceableButtonUI btn)
     {
         if (btn == null) return;
+        if (loading.GetLoadingTime(btn) > 0) 
+        {
+            return;
+        }
+
         if (btn == currentButton) //when clicked onto the selected button -> unselect
         {
             currentButton.SetSelectedActive(false);
@@ -80,7 +91,9 @@ public class InventoryUI : MonoBehaviour
     public void InitNewItem(InteractableData data)
     {
         var btn = Instantiate<PlaceableButtonUI>(buttonPrefab, rootSpawn);
-        btn.SetData(data);
+        btn.SetData(data, loading);
         btn.gameObject.SetActive(true);
+
+        loading.StartLoading(btn, data.loadingTime);
     }
 }

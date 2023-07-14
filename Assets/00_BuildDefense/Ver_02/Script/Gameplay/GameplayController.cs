@@ -87,6 +87,7 @@ public class GameplayController : MonoBehaviour
             item.SetGridData(playGrid);
         }
 
+        inventory.RemoveInteractableItem(itemToPlaceData);
         SetInventoryItem(null);
         OnItemPlaced?.Invoke();
         return true;

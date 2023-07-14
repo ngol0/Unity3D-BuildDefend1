@@ -15,6 +15,7 @@ MonoBehaviour:
   nameString: 
   prefab: {fileID: 566054652, guid: 0e8082481fccffc48899a492762eda50, type: 3}
   sprite: {fileID: 21300000, guid: dae33700bd23f76409a80bf78fdb8a42, type: 3}
+  loadingTime: 2
   resourceData:
     timerMax: 0
     resourceType: {fileID: 0}
@@ -22,5 +23,5 @@ MonoBehaviour:
     maxResourceAmount: 0
   resourceCostToBuild: []
   healthAmountMax: 0
-  unitToSell:
+  itemToSell:
   - {fileID: 11400000, guid: 8c251019e4bf7e04f877e559069aeda2, type: 2}

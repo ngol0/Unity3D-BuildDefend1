@@ -13,4 +13,9 @@ public class InventorySO : ScriptableObject
         interactableItemList.Add(item);
         OnAddComplete?.Invoke(item);
     }
+
+    public void RemoveInteractableItem(InteractableData item)
+    {
+        interactableItemList.Remove(item);
+    }
 }
