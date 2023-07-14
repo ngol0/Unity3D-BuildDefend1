@@ -223,7 +223,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 0}
+  m_Sprite: {fileID: 21300000, guid: 652f72564317548428a9e9f2f222a8c7, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -754,7 +754,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 140911971346689203}
         m_TargetAssemblyTypeName: UnitActionController, Assembly-CSharp
         m_MethodName: StopUnit
         m_Mode: 1
@@ -1519,7 +1519,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &799647273
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1587,10 +1587,10 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: SelectionController, Assembly-CSharp
-        m_MethodName: CancelItemSelection
-        m_Mode: 1
+      - m_Target: {fileID: 140911971346689202}
+        m_TargetAssemblyTypeName: UnitMoveActionUI, Assembly-CSharp
+        m_MethodName: SetUnitControllerActive
+        m_Mode: 6
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -1757,7 +1757,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &833425426
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1828,7 +1828,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 0}
+  m_Sprite: {fileID: 21300000, guid: 6161de4a034ab494a9d86f67b3e71de4, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -1881,7 +1881,7 @@ MonoBehaviour:
   gridMask:
     serializedVersion: 2
     m_Bits: 128
-  inventory: {fileID: 0}
+  inventory: {fileID: 11400000, guid: 9361660a5ad4028438776d5eea6bff66, type: 2}
   playGrid: {fileID: 1654398830}
   pathFindingGrid: {fileID: 786488377}
   OnItemSelected: {fileID: 11400000, guid: dd5c77286ca704cd0bcd79ee4ed2871d, type: 2}
@@ -2228,7 +2228,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &982526353
 RectTransform:
   m_ObjectHideFlags: 0
@@ -2299,7 +2299,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 0}
+  m_Sprite: {fileID: 21300000, guid: 6161de4a034ab494a9d86f67b3e71de4, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -2525,7 +2525,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: e270556dad6984bf6a3b9ab72a5e9a95, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 8d98ab6168c3e91439339f1908b8fe97, type: 3}
   m_Type: 0
   m_PreserveAspect: 1
   m_FillCenter: 1
@@ -2778,7 +2778,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 0}
+  m_Sprite: {fileID: 21300000, guid: 6cc27a8d759047041854cd8e92156faf, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -3994,7 +3994,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 140911971346689203}
         m_TargetAssemblyTypeName: UnitActionController, Assembly-CSharp
         m_MethodName: MoveAhead
         m_Mode: 1
@@ -4691,6 +4691,7 @@ MonoBehaviour:
   icon: {fileID: 5602051897697151356}
   selectedBG: {fileID: 5602051898746919439}
   overlayBG: {fileID: 150416300}
+  btn: {fileID: 5602051897597229511}
 --- !u!224 &8794136228844290216
 RectTransform:
   m_ObjectHideFlags: 0
@@ -4731,7 +4732,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: e270556dad6984bf6a3b9ab72a5e9a95, type: 3}
+  m_Sprite: {fileID: 21300000, guid: a6fbd5a181bc51e42a61a73fe8d727c8, type: 3}
   m_Type: 0
   m_PreserveAspect: 1
   m_FillCenter: 1
@@ -4905,7 +4906,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 0}
+  m_Sprite: {fileID: 21300000, guid: 6cc27a8d759047041854cd8e92156faf, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -4969,7 +4970,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!222 &8794136230544209148
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -5013,7 +5014,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 0}
+  m_Sprite: {fileID: 21300000, guid: 6161de4a034ab494a9d86f67b3e71de4, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
