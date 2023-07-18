@@ -17,7 +17,7 @@ public class ResourceController : MonoBehaviour
         //initialize the dictionary
         foreach (ResourceTypeSO resource in resourceTypeList.list)
         {
-            resourceAmountDictionary[resource] = 0; //putresource from resource list into dictionary
+            resourceAmountDictionary[resource] = 0;
         }
 
         foreach (ResourceAmount resource in initialResources)
@@ -43,12 +43,9 @@ public class ResourceController : MonoBehaviour
         {
             if (GetResourceAmount(resourceAmount.resourceType) < resourceAmount.amount)
             {
-                //errorMessage = "";
                 return false;
             }
         }
-        //can afford all
-        //errorMessage = "";
         return true;
     }
 

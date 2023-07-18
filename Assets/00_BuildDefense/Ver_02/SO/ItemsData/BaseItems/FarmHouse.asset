@@ -23,7 +23,7 @@ MonoBehaviour:
     maxResourceAmount: 5
   resourceCostToBuild:
   - resourceType: {fileID: 11400000, guid: 04f71d09d55974f3e9e30745e9e1a3b7, type: 2}
-    amount: 4
+    amount: 5
   healthAmountMax: 0
   itemToSell:
   - {fileID: 11400000, guid: 8c251019e4bf7e04f877e559069aeda2, type: 2}
