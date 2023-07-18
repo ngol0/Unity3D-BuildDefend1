@@ -16,12 +16,12 @@ public class ShopPanelUI : MonoBehaviour
     {
         shop.OnSelectedResourceItem += SetUI;
     }
-    public void SetUI(ResourceItem item)
+    public void SetUI(ResourceItem item, ResourceController resourceController)
     {
         if (item!=null)
         {
+            InitItems(item, resourceController);
             guiMain.SetActive(true);
-            InitItems(item);
         }
         else
         {
@@ -30,17 +30,18 @@ public class ShopPanelUI : MonoBehaviour
     }
 
     //init items to sell in the selected item
-    public void InitItems(ResourceItem resourceItem)
+    public void InitItems(ResourceItem resourceItem, ResourceController resourceController)
     {
         foreach (Transform item in rootSpawn)
         {
             Destroy(item.gameObject);
         }
 
-        foreach (var item in resourceItem.Data.itemToSell)
+        foreach (ResourceItemData item in resourceItem.Data.itemToSell)
         {
             var btn = Instantiate<ShopItemUI>(buttonPrefab, rootSpawn);
             btn.SetData(item, shop);
+            btn.SetBtnActive(resourceController.CanAfford(item.resourceCostToBuild));
             btn.gameObject.SetActive(true);
         }
     }

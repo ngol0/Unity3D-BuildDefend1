@@ -10,16 +10,15 @@ namespace Lam.DefenderBuilder.UI
     public class ResourceUI : MonoBehaviour
     {
         [SerializeField] GameObject resourceTemplate;
+        [SerializeField] ResourceController resourceController;
 
         GameObject resourceUI;
-        ResourceTypeListSO resourceList;
         Dictionary<ResourceTypeSO, GameObject> resourceUIDictionary;
 
         private void Awake()
         {
             resourceTemplate.SetActive(false);
             resourceUIDictionary = new Dictionary<ResourceTypeSO, GameObject>();
-            resourceList = Resources.Load<ResourceTypeListSO>(nameof(ResourceTypeListSO));
         }
 
         private void Start()
@@ -28,10 +27,10 @@ namespace Lam.DefenderBuilder.UI
             UpdateResourceAmount();
 
             //event listener
-            ResourceManager.Instance.OnResourceAmountChange += ResourceManager_OnResourceAmountChange;
+            resourceController.OnResourceAmountChange += ResourceManager_OnResourceAmountChange;
         }
 
-        private void ResourceManager_OnResourceAmountChange(object sender, System.EventArgs e)
+        private void ResourceManager_OnResourceAmountChange()
         {
             UpdateResourceAmount();
         }
@@ -41,7 +40,7 @@ namespace Lam.DefenderBuilder.UI
             int index = 0;
             float offset = -160;
 
-            foreach (ResourceTypeSO resourceType in resourceList.list)
+            foreach (ResourceTypeSO resourceType in resourceController.resourceTypeList.list)
             {
                 //init object
                 resourceUI = Instantiate(resourceTemplate, transform);
@@ -64,7 +63,7 @@ namespace Lam.DefenderBuilder.UI
         {
             foreach (var item in resourceUIDictionary)
             {
-                int resourceAmount = ResourceManager.Instance.GetResourceAmount(item.Key);
+                int resourceAmount = resourceController.GetResourceAmount(item.Key);
                 item.Value.GetComponentInChildren<TextMeshProUGUI>().SetText(resourceAmount.ToString());
             }
         }

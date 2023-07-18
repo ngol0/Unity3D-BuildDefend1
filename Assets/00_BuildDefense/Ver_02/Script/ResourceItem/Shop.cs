@@ -5,12 +5,15 @@ using UnityEngine;
 public class Shop : MonoBehaviour
 {
     ResourceItem selectedItem;
-    public System.Action<ResourceItem> OnSelectedResourceItem;
+    public System.Action<ResourceItem, ResourceController> OnSelectedResourceItem;
 
+    [Header("Resources and Inventory")]
+    [SerializeField] ResourceController resourceController;
     [SerializeField] InventorySO inventory;
 
     public void SetSelectedItem(InteractableItem item)
     {
+        if (item == selectedItem) return;
         if (item is ResourceItem)
         {
             selectedItem = item as ResourceItem;
@@ -19,7 +22,7 @@ public class Shop : MonoBehaviour
         {
             selectedItem = null;
         }
-        OnSelectedResourceItem?.Invoke(selectedItem);
+        OnSelectedResourceItem?.Invoke(selectedItem, resourceController);
     }
 
     public void OnTransaction(InteractableData itemData)

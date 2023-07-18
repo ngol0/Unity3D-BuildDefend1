@@ -9,6 +9,8 @@ public class ShopItemUI : MonoBehaviour
     Shop shop;
 
     [SerializeField] Image spriteImg;
+    [SerializeField] Button btn;
+
     public void SetData(InteractableData data, Shop shop)
     {
         this.data = data;
@@ -24,5 +26,10 @@ public class ShopItemUI : MonoBehaviour
     public void OnShopItemClicked()
     {
         shop.OnTransaction(data);
+    }
+
+    public void SetBtnActive(bool active)
+    {
+        btn.interactable = active;
     }
 }

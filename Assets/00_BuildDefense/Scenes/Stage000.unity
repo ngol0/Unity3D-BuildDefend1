@@ -3045,7 +3045,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4cbf5496b14fe4f74a555686959fdfce, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  virtualCamera: {fileID: 0}
+  virtualCamera: {fileID: 2059708555}
   zoomAmount: 5
   zoomMinValue: 50
   zoomMaxValue: 120
@@ -11137,11 +11137,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 7164235041740305818, guid: b80f67bd875534819a6779971924e9ce, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7164235041740305818, guid: b80f67bd875534819a6779971924e9ce, type: 3}
       propertyPath: m_AnchorMin.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7164235041740305818, guid: b80f67bd875534819a6779971924e9ce, type: 3}
       propertyPath: m_SizeDelta.x
@@ -11157,7 +11157,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7164235041740305818, guid: b80f67bd875534819a6779971924e9ce, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -10
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7164235042244000203, guid: b80f67bd875534819a6779971924e9ce, type: 3}
       propertyPath: m_SizeDelta.x

@@ -1,11 +1,11 @@
 
-namespace Lam.DefenderBuilder.Resource
+
+
+[System.Serializable]
+public class ResourceAmount
 {
-    [System.Serializable]
-    public class ResourceAmount
-    {
-        public ResourceTypeSO resourceType;
-        public int amount;
-    }
+    public ResourceTypeSO resourceType;
+    public int amount;
 }
+
 

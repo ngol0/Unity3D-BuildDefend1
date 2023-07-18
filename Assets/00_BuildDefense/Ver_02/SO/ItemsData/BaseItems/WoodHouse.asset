@@ -17,11 +17,13 @@ MonoBehaviour:
   sprite: {fileID: 21300000, guid: e5600378dd761e64d9423790c482bf36, type: 3}
   loadingTime: 3
   resourceData:
-    timerMax: 0
-    resourceType: {fileID: 0}
-    resourceDetectionRadius: 0
-    maxResourceAmount: 0
-  resourceCostToBuild: []
+    timerMax: 1
+    resourceType: {fileID: 11400000, guid: a412d444bf89c4cdaa996bf112dbbcdc, type: 2}
+    resourceDetectionRadius: 1
+    maxResourceAmount: 4
+  resourceCostToBuild:
+  - resourceType: {fileID: 11400000, guid: 04f71d09d55974f3e9e30745e9e1a3b7, type: 2}
+    amount: 1
   healthAmountMax: 0
   itemToSell:
   - {fileID: 11400000}

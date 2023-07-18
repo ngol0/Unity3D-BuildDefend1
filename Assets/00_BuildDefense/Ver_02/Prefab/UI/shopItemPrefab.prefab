@@ -296,7 +296,7 @@ MonoBehaviour:
     m_PressedTrigger: Pressed
     m_SelectedTrigger: Selected
     m_DisabledTrigger: Disabled
-  m_Interactable: 1
+  m_Interactable: 0
   m_TargetGraphic: {fileID: 579234840315194781}
   m_OnClick:
     m_PersistentCalls:
@@ -326,6 +326,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spriteImg: {fileID: 579234841321137734}
+  btn: {fileID: 579234840856622866}
 --- !u!1 &579234841321137732
 GameObject:
   m_ObjectHideFlags: 0
