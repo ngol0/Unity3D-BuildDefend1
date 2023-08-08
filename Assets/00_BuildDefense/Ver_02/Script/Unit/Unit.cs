@@ -31,13 +31,19 @@ public class Unit : InteractableItem
     {
         foreach (BaseAction action in actionArrays)
         {
-            if (action is T)
+            if (action is T t)
             {
-                return (T)action;
+                return t;
             }
         }
 
         return null;
+    }
+
+    public override void SetGridData(PlayGrid gridSystem)
+    {
+        base.SetGridData(gridSystem);
+        Debug.Log(":::Unit placed");
     }
 
     //----testing----//

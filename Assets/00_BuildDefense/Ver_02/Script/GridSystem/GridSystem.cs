@@ -19,7 +19,7 @@ public class GridSystem<TGridItem>
         {
             for (int z = 0; z < gridHeight; z++)
             {
-                GridPosition gridPos = new GridPosition(x,z);
+                GridPosition gridPos = new(x,z);
 
                 //create grid array data
                 gridItemArray[x,z] = createGridItem(this, gridPos);
@@ -34,7 +34,7 @@ public class GridSystem<TGridItem>
         {
             for (int z = 0; z < gridHeight; z++)
             {
-                GridPosition gridPos = new GridPosition(x,z);
+                GridPosition gridPos = new(x,z);
 
                 //create grid ui
                 GridItemUI gridItemUI = 

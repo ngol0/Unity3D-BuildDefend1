@@ -19,8 +19,8 @@ MonoBehaviour:
   resourceData:
     timerMax: 2
     resourceType: {fileID: 11400000, guid: 04f71d09d55974f3e9e30745e9e1a3b7, type: 2}
-    resourceDetectionRadius: 2
-    maxResourceAmount: 2
+    resourceDetectionRadius: 5
+    maxResourceAmount: 10
   resourceCostToBuild:
   - resourceType: {fileID: 11400000, guid: df7230bce252e4f9e9927bc4af420593, type: 2}
     amount: 5

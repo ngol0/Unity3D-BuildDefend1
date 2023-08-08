@@ -18,11 +18,17 @@ public class GameplayController : MonoBehaviour
 
     [Header("Event to raise")]
     [SerializeField] InteractableEvent OnItemSelected;
+
+    #region Events
     public System.Action OnItemPlaced;
     public System.Action OnCancelPlacedItem;
+    public System.Action OnTryPlacingResourceItem;
+    public System.Action OnDoneDeciding;
+    #endregion
 
-    InteractableItem selectedItem;
-    InteractableData itemToPlaceData;
+    InteractableItem activePlayableItem;
+    InteractableItem activePlaceableItem;
+    InteractableData itemToPlaceInfo;
 
     private void Update()
     {
@@ -39,69 +45,107 @@ public class GameplayController : MonoBehaviour
     {
         //select item
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-        RaycastHit hitData;
-        if (Physics.Raycast(ray, out hitData, float.MaxValue, interactableMask))
+        if (Physics.Raycast(ray, out RaycastHit hitData, float.MaxValue, interactableMask))
         {
             if (hitData.transform.TryGetComponent<InteractableItem>(out InteractableItem item))
             {
-                selectedItem = item;
+                activePlayableItem = item;
                 CancelPlaceableItem(); //cancel chosen placeable item when select item
             }
         }
         else
         {
-            selectedItem = null;
+            activePlayableItem = null;
         }
-        OnItemSelected?.Raise(selectedItem);
+
+        if (OnItemSelected) OnItemSelected.Raise(activePlayableItem);
+
     }
 
     //called when item is selected but then want to place item instead
     public void CancelItemSelection()
     {
-        selectedItem = null;
-        OnItemSelected?.Raise(selectedItem);
+        activePlayableItem = null;
+        if (OnItemSelected) OnItemSelected.Raise(activePlayableItem);
     }
 
     public bool TryPlaceItemAtGrid()
     {
-        if (itemToPlaceData == null) return false;
+        if (itemToPlaceInfo == null) return false;
 
         //ray cast to get a position
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-        RaycastHit hitData;
-        if (Physics.Raycast(ray, out hitData, float.MaxValue, gridMask))
+        if (Physics.Raycast(ray, out RaycastHit hitData, float.MaxValue, gridMask))
         {
             GridPosition gridPos = playGrid.GetGridPosition(hitData.point);
             GridItem gridItem = playGrid.GetGridItem(gridPos);
-            PathNode pathNodeItem = pathFindingGrid.GetNode(gridPos);
 
             if (!gridItem.IsPlaceable()) return false;
 
             InteractableItem item = Instantiate
-                (itemToPlaceData.prefab, 
+                (itemToPlaceInfo.prefab,
                 playGrid.GetWorldPosition(gridPos), Quaternion.identity);
-                
-            gridItem.SetItem(item); //update placeable at grid position
-            pathNodeItem.SetItem(item); //update obstacles for pathfinding
 
             item.SetGridData(playGrid);
+            CheckItemOnPlace(item);
         }
-
-        inventory.RemoveInteractableItem(itemToPlaceData);
-        SetInventoryItem(null);
-        OnItemPlaced?.Invoke();
         return true;
     }
 
-    //set item to place into grid
-    public void SetInventoryItem(InteractableData activeItemData)
+    private void CheckItemOnPlace(InteractableItem item)
     {
-        itemToPlaceData = activeItemData;
+        activePlaceableItem = item;
+
+        if (activePlaceableItem is ResourceItem)
+        {
+            activePlaceableItem.GetComponent<ResourceGeneratorRepresentation>().FindResourceNodeNearby();
+            OnTryPlacingResourceItem?.Invoke(); //update ui: show yes or no panel
+            SetItemToPlaceInfo(null);
+        }
+        else if (activePlaceableItem is Unit)
+        {
+            DonePlacingItem();
+        }
+    }
+
+    //bind to button at Confirmation Panel
+    private void OnDecideToPlace(bool isPlaced)
+    {
+        if (isPlaced)
+        {
+            DonePlacingItem(); //remove from inventory
+        }
+        else
+        {
+            Destroy(activePlaceableItem.gameObject);
+            CancelPlaceableItem();
+        }
+
+        OnDoneDeciding?.Invoke(); //show inventory ui
+    }
+
+    public void DonePlacingItem()
+    {
+        //update placeable at grid position && update obstacles for pathfinding
+        playGrid.SetItemAtGrid(activePlaceableItem, activePlaceableItem.CurGridPos);
+        pathFindingGrid.SetItemAtGrid(activePlaceableItem, activePlaceableItem.CurGridPos);
+
+        inventory.RemoveInteractableItem(itemToPlaceInfo);
+        OnItemPlaced?.Invoke(); //update inventory ui
+
+        SetItemToPlaceInfo(null);
+        activePlaceableItem = null;
+    }
+
+    //set item to place into grid
+    public void SetItemToPlaceInfo(InteractableData activeItemData)
+    {
+        itemToPlaceInfo = activeItemData;
     }
 
     private void CancelPlaceableItem()
     {
-        itemToPlaceData = null;
+        itemToPlaceInfo = null;
         OnCancelPlacedItem?.Invoke();
     }
 
@@ -113,5 +157,4 @@ public class GameplayController : MonoBehaviour
         }
         return false;
     }
-
 }

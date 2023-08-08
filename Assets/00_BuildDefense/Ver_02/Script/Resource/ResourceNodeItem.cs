@@ -4,5 +4,10 @@ using UnityEngine;
 
 public class ResourceNodeItem : MonoBehaviour, IGameItem
 {
-    [SerializeField] ResourceTypeSO type;
+    public ResourceTypeSO type;
+
+    public string GetName()
+    {
+        return gameObject.name;
+    }
 }

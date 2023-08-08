@@ -8,10 +8,9 @@ public class MoveAction : BaseAction
     private Unit unit;
     private float moveSpeed = 5f;
     private Vector3 moveDirection;
-    private GridPosition nextGridPos;
     private PlayGrid playGrid;
-    private Queue<GridPosition> gridTargets = new Queue<GridPosition>();
-    private List<GridPosition> paths = new List<GridPosition>();
+    private Queue<GridPosition> gridTargets = new();
+    private List<GridPosition> paths = new();
 
     bool setNextTarget = false;
 
@@ -35,7 +34,7 @@ public class MoveAction : BaseAction
         if (Vector3.Distance(transform.position, targetPos) > 0.1f)
         {
             moveDirection = (targetPos - transform.position).normalized;
-            transform.position += moveDirection * Time.deltaTime * moveSpeed;
+            transform.position += moveSpeed * Time.deltaTime * moveDirection;
         }
         else
         {

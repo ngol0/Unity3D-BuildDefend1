@@ -38,8 +38,8 @@ public class Pathfinding : GridBase
     //a-star algorithm
     public List<GridPosition> FindPath(GridPosition startPos, GridPosition endPos)
     {
-        List<PathNode> openList = new List<PathNode>();
-        List<PathNode> closedList = new List<PathNode>();
+        List<PathNode> openList = new();
+        List<PathNode> closedList = new();
 
         PathNode startNode = GetNode(startPos);
         PathNode endNode = GetNode(endPos);
@@ -103,7 +103,7 @@ public class Pathfinding : GridBase
 
     private List<GridPosition> CalculatePath(PathNode endNode)
     {
-        List<PathNode> path = new List<PathNode>();
+        List<PathNode> path = new();
         path.Add(endNode);
 
         while (endNode.CameFromNode != null)
@@ -114,7 +114,7 @@ public class Pathfinding : GridBase
         
         path.Reverse();
 
-        List<GridPosition> gridPosList = new List<GridPosition>();
+        List<GridPosition> gridPosList = new();
         foreach (var item in path)
         {
             gridPosList.Add(item.GridPos);
@@ -129,7 +129,7 @@ public class Pathfinding : GridBase
         {
             for (int z = 0; z < gridStats.gridHeight; z++)
             {
-                GridPosition gridPos = new GridPosition(x, z);
+                GridPosition gridPos = new(x, z);
                 PathNode node = GetNode(gridPos);
                 node.SetCameFromNode(null);
                 node.SetGCost(int.MaxValue);
@@ -163,7 +163,7 @@ public class Pathfinding : GridBase
 
     private List<PathNode> GetNeighbourList(PathNode currentNode)
     {
-        List<PathNode> neighbourList = new List<PathNode>();
+        List<PathNode> neighbourList = new();
 
         GridPosition gridPosition = currentNode.GridPos;
 

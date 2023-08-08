@@ -26,6 +26,9 @@ public class InventoryUI : MonoBehaviour
     {
         gameplayLogic.OnItemPlaced += OnDonePlaced;
         gameplayLogic.OnCancelPlacedItem += ResetUI;
+        gameplayLogic.OnTryPlacingResourceItem += DeactivateUI;
+        gameplayLogic.OnDoneDeciding += SetUIActive;
+
         inventory.OnAddComplete += InitNewItem;
     }
 
@@ -56,7 +59,7 @@ public class InventoryUI : MonoBehaviour
         if (btn == currentButton) //when clicked onto the selected button -> unselect
         {
             currentButton.SetSelectedActive(false);
-            gameplayLogic.SetInventoryItem(null);
+            gameplayLogic.SetItemToPlaceInfo(null);
             currentButton = null;
             return;
         }
@@ -68,8 +71,18 @@ public class InventoryUI : MonoBehaviour
         btn.SetSelectedActive(true);
         currentButton = btn;
 
-        gameplayLogic.SetInventoryItem(currentButton.ItemData); //set item to place
+        gameplayLogic.SetItemToPlaceInfo(currentButton.ItemData); //set item to place
         gameplayLogic.CancelItemSelection(); //cancel item selection if one is selected
+    }
+
+    private void DeactivateUI()
+    {
+        guiMain.SetActive(false);
+    }
+
+    public void SetUIActive()
+    {
+        guiMain.SetActive(true);
     }
 
     private void ResetUI()

@@ -9,10 +9,16 @@ public abstract class InteractableItem : MonoBehaviour, IGameItem
 
     protected GridPosition curGridPos;
     public GridPosition CurGridPos => curGridPos;
+    public InteractableData itemData;
 
     public virtual void SetGridData(PlayGrid gridSystem)
     {
         playGrid = gridSystem;
         curGridPos = playGrid.GetGridPosition(transform.position);
+    }
+
+    public string GetName()
+    {
+        return gameObject.name;
     }
 }

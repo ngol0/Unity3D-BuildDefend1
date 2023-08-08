@@ -4,5 +4,5 @@ using UnityEngine;
 
 public interface IGameItem
 {
-    
+    public string GetName();
 }

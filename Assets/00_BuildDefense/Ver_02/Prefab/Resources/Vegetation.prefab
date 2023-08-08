@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3042609574390312705}
   - component: {fileID: 254245617}
-  - component: {fileID: 8620793264440781698}
+  - component: {fileID: 1284930640600863552}
   m_Layer: 9
   m_Name: Vegetation
   m_TagString: Untagged
@@ -47,8 +47,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   type: {fileID: 11400000, guid: a412d444bf89c4cdaa996bf112dbbcdc, type: 2}
---- !u!65 &8620793264440781698
-BoxCollider:
+--- !u!135 &1284930640600863552
+SphereCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -58,8 +58,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 3.8802872, y: 3.2106519, z: 4.352806}
-  m_Center: {x: 0, y: 0, z: -0.006208038}
+  m_Radius: 5
+  m_Center: {x: 0, y: 3, z: 0}
 --- !u!1 &6701248516019162466
 GameObject:
   m_ObjectHideFlags: 0
