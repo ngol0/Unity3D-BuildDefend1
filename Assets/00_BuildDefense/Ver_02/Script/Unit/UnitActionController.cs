@@ -12,14 +12,7 @@ public class UnitActionController : MonoBehaviour
     public void SetSelectedUnit(InteractableItem item)
     {
         if (selectedUnit == item) return;
-        if (item is Unit)
-        {
-            selectedUnit = item as Unit;
-        }
-        else
-        {
-            selectedUnit = null;
-        }
+        selectedUnit = (item is Unit) ? item as Unit : null;
         OnSelectedUnit?.Invoke(selectedUnit!=null); //set unit action panel
     }
 
