@@ -67,6 +67,8 @@ namespace Lam.DefenderBuilder.UI
                 int resourceAmount = ResourceManager.Instance.GetResourceAmount(item.Key);
                 item.Value.GetComponentInChildren<TextMeshProUGUI>().SetText(resourceAmount.ToString());
             }
+
+            Debug.Log("ehhh???");
         }
     }
 }
