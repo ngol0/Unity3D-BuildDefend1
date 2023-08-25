@@ -26,9 +26,9 @@ public class GameplayController : MonoBehaviour
     public System.Action OnDoneDeciding;
     #endregion
 
-    InteractableItem activePlayableItem;
-    InteractableItem activePlaceableItem;
-    InteractableData itemToPlaceInfo;
+    InteractableItem activePlayableItem; //selected existing item
+    InteractableItem activePlaceableItem; //item that is waiting to be confirmed to place
+    InteractableData itemToPlaceInfo; //data of item to place
 
     private void Update()
     {
@@ -112,6 +112,7 @@ public class GameplayController : MonoBehaviour
     {
         if (isPlaced)
         {
+            activePlaceableItem.GetComponent<ResourceGenerator>().SetMaxTimer(); //set timer for resource item to start collecting resource
             DonePlacingItem(); //remove from inventory
         }
         else

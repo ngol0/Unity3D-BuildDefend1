@@ -48,7 +48,7 @@ namespace Lam.DefenderBuilder
                 {
                     var tower = Instantiate(activeTowerType.towerPrefab, transform.position, Quaternion.identity);
                     var resourceGenerator = tower.GetComponent<ResourceGenerator>();
-                    if (resourceGenerator) resourceGenerator.SetMaxTimer(maxTimer);
+                    //if (resourceGenerator) resourceGenerator.SetMaxTimer(maxTimer);
                     //tower.GetComponent<HealthSystem>().OnDie += () => isPlaceable = true;
                     isPlaceable = false;
 

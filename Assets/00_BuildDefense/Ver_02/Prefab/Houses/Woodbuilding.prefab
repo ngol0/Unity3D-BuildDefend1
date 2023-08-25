@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 468204535720522175}
   - component: {fileID: 1760750426539288198}
   - component: {fileID: 3720312806674938530}
+  - component: {fileID: 4202537104422305073}
   m_Layer: 8
   m_Name: Woodbuilding
   m_TagString: Untagged
@@ -105,6 +106,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   resourcesAmount: {fileID: 5827476037707232033}
+--- !u!114 &4202537104422305073
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4310472775481811859}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c7a5dbeda12db4d5c9d1783f00130400, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  OnAddResource: {fileID: 11400000, guid: c883b6e4eaebc3641b10aa5838ed34f7, type: 2}
+  resourceType: {fileID: 11400000, guid: a412d444bf89c4cdaa996bf112dbbcdc, type: 2}
 --- !u!1 &7496591783621529047
 GameObject:
   m_ObjectHideFlags: 0

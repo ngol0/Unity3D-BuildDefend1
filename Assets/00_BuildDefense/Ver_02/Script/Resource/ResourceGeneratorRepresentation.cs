@@ -12,6 +12,8 @@ public class ResourceGeneratorRepresentation : MonoBehaviour
     private ResourceGeneratorData resourceGeneratorData;
     ResourceItemData itemData;
 
+    public float MaxTimer => maxTimer;
+
     private void Awake()
     {
         itemData = this.GetComponent<ResourceItem>().itemData as ResourceItemData;
@@ -60,14 +62,15 @@ public class ResourceGeneratorRepresentation : MonoBehaviour
         {
             nearByResourceNode = true;
             maxTimer = (resourceGeneratorData.timerMax / 2f) +
-                resourceGeneratorData.timerMax *
+                resourceGeneratorData.timerMax / 2 *
                 (1 - (float)nearByResourceAmt / resourceGeneratorData.maxResourceAmount);
         }
         else
         {
             nearByResourceNode = false;
         }
-        //Debug.Log("Nearby Resource:" + nearByResourceAmt);
+        Debug.Log("Nearby Resource:" + nearByResourceAmt);
+        Debug.Log("Time Max: " + maxTimer);
         UpdateResourceText();
 
         return nearByResourceNode;

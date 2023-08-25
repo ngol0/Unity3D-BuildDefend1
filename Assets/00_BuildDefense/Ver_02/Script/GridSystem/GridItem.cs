@@ -26,7 +26,8 @@ public class GridItem
 
     public override string ToString()
     {
-        if (item!=null) return item.GetName();
+        if (item!=null) //return item.GetName();
+            return "X";
         else return gridPosition.ToString();
     }
 }

@@ -29,7 +29,7 @@ namespace Lam.DefenderBuilder.Tower
         private void Start()
         {
             generatorOverlay.FindResourceNodeNearby();
-            SetMaxTimer(generatorOverlay.MaxTimer);
+            //SetMaxTimer(generatorOverlay.MaxTimer);
 
             towerType = GetComponent<BuildingHolder>().towerType;
             SetHealth();

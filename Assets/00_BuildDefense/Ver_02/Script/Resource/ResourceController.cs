@@ -55,5 +55,6 @@ public class ResourceController : MonoBehaviour
         {
             resourceAmountDictionary[resourceAmount.resourceType] -= resourceAmount.amount;
         }
+        OnResourceAmountChange?.Invoke();
     }
 }

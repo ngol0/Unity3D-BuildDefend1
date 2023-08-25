@@ -1,13 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.Animations;
 using UnityEngine;
 
 public class Unit : InteractableItem
 {
     BaseAction[] actionArrays;
-
-    //----TESTING---//
-    public Testing testing;
+    public Animator animatorController;
 
     private void Start()
     {
@@ -27,6 +26,12 @@ public class Unit : InteractableItem
         }
     }
 
+    public override void SetGridData(PlayGrid gridSystem)
+    {
+        base.SetGridData(gridSystem);
+        Debug.Log(":::Unit placed");
+    }
+
     public T GetAction<T>() where T : BaseAction
     {
         foreach (BaseAction action in actionArrays)
@@ -38,12 +43,6 @@ public class Unit : InteractableItem
         }
 
         return null;
-    }
-
-    public override void SetGridData(PlayGrid gridSystem)
-    {
-        base.SetGridData(gridSystem);
-        Debug.Log(":::Unit placed");
     }
 
     //----testing----//

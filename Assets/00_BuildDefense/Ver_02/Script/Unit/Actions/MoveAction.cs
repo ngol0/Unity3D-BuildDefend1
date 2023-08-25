@@ -67,6 +67,8 @@ public class MoveAction : BaseAction
         paths = pathfinding.FindPath(unit.CurGridPos, destination);
 
         SetPath(paths);
+
+        unit.animatorController.SetBool("isWalking", true);
     }
 
     public void MoveUp()
@@ -82,6 +84,7 @@ public class MoveAction : BaseAction
     public void Cancel()
     {
         gridTargets.Clear();
+        unit.animatorController.SetBool("isWalking", false);
     }
 
 }
