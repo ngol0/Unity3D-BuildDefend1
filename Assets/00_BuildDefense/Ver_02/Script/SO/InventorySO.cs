@@ -17,5 +17,6 @@ public class InventorySO : ScriptableObject
     public void RemoveInteractableItem(InteractableData item)
     {
         interactableItemList.Remove(item);
+        Debug.Log(":::Inventory Remove: " + item.name);
     }
 }

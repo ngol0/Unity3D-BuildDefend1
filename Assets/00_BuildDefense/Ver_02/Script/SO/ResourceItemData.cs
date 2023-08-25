@@ -7,7 +7,6 @@ using Lam.DefenderBuilder.Resource;
 public class ResourceItemData : InteractableData
 {
     public ResourceGeneratorData resourceData; //number of resource to build tower
-    public ResourceAmount[] resourceCostToBuild;
     public int healthAmountMax;
 
     public string GetTowerResourceInfo()

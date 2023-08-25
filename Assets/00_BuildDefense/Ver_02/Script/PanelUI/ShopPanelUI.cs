@@ -39,7 +39,7 @@ public class ShopPanelUI : MonoBehaviour
 
         ResourceItemData itemData = resourceItem.itemData as ResourceItemData;
 
-        foreach (ResourceItemData item in itemData.itemToSell)
+        foreach (InteractableData item in itemData.itemToSell)
         {
             var btn = Instantiate<ShopItemUI>(buttonPrefab, rootSpawn);
             btn.SetData(item, shop);

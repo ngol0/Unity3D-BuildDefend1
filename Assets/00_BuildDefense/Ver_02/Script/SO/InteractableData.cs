@@ -10,4 +10,6 @@ public class InteractableData : ScriptableObject
     //public GameObject ghostPrefab; //prefab of tower to init
     public Sprite sprite;
     public float loadingTime;
+
+    public ResourceAmount[] resourceCostToBuild;
 }

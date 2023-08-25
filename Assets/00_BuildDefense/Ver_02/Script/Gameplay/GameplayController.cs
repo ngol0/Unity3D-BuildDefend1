@@ -96,11 +96,10 @@ public class GameplayController : MonoBehaviour
     {
         activePlaceableItem = item;
 
-        if (activePlaceableItem is ResourceItem)
+        if (activePlaceableItem is ResourceItem) //if item resource item (i.e: houses)
         {
-            activePlaceableItem.GetComponent<ResourceGeneratorRepresentation>().FindResourceNodeNearby();
+            activePlaceableItem.GetComponent<ResourceGeneratorRepresentation>().FindResourceNodeNearby(); //find resource to show ++ sign
             OnTryPlacingResourceItem?.Invoke(); //update ui: show yes or no panel
-            SetItemToPlaceInfo(null);
         }
         else if (activePlaceableItem is Unit)
         {

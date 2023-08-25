@@ -16,3 +16,8 @@ MonoBehaviour:
   prefab: {fileID: -1097294237071409920, guid: 94b3ed799f64c5a4a8d4bd36c515f477, type: 3}
   sprite: {fileID: 21300000, guid: 982b97ae0927c489680ed733d76c4573, type: 3}
   loadingTime: 6
+  resourceCostToBuild:
+  - resourceType: {fileID: 11400000, guid: df7230bce252e4f9e9927bc4af420593, type: 2}
+    amount: 20
+  - resourceType: {fileID: 11400000, guid: 04f71d09d55974f3e9e30745e9e1a3b7, type: 2}
+    amount: 15

@@ -14,19 +14,13 @@ public class Shop : MonoBehaviour
     public void SetSelectedItem(InteractableItem item)
     {
         if (item == selectedItem) return;
-        if (item is ResourceItem)
-        {
-            selectedItem = item as ResourceItem;
-        }
-        else
-        {
-            selectedItem = null;
-        }
+        selectedItem = (item is ResourceItem) ? item as ResourceItem : null;
         OnSelectedResourceItem?.Invoke(selectedItem, resourceController);
     }
 
     public void OnTransaction(InteractableData itemData)
     {
         inventory.AddToInteractableList(itemData);
+        resourceController.SpendResource(itemData.resourceCostToBuild);
     }
 }
