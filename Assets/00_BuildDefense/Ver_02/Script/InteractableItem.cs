@@ -11,7 +11,7 @@ public abstract class InteractableItem : MonoBehaviour, IGameItem
     public GridPosition CurGridPos => curGridPos;
     public InteractableData itemData;
 
-    public virtual void SetGridData(PlayGrid gridSystem)
+    public virtual void SetGridData(PlayGrid gridSystem, Pathfinding pathGrid = null)
     {
         playGrid = gridSystem;
         curGridPos = playGrid.GetGridPosition(transform.position);

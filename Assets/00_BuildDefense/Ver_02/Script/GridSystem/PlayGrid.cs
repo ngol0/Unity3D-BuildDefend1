@@ -36,8 +36,12 @@ public class PlayGrid : GridBase
         SetItemAtGrid(item, toGridPos);
     }
 
+    public bool IsGridItemPlaceable(GridPosition gridPos)
+    {
+        return GetGridItem(gridPos).IsPlaceable();
+    }
+
     public GridItem GetGridItem(GridPosition gridPosition) => gridSystem.GetGridItem(gridPosition);
     public override GridPosition GetGridPosition(Vector3 worldPos) => gridSystem.GetGridPosition(worldPos);
     public override Vector3 GetWorldPosition(GridPosition gridPos) => gridSystem.GetWorldPosition(gridPos);
-    public GridPosition GetLastGridInRow(int row) => gridSystem.GetLastGridPosInRow(row);
 }

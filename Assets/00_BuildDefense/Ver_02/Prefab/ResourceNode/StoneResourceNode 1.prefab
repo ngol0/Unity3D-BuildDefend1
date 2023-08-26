@@ -61,8 +61,8 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 3c3b837747fec4d25bc5c16611bbbb16, type: 2}
-  - {fileID: 474761548000704790, guid: 646870f68defd488181bad2bc7f12070, type: 3}
+  - {fileID: 963798294112862009, guid: bee2728943133fd40a81ce21eff9b319, type: 3}
+  - {fileID: 963798294112862009, guid: bee2728943133fd40a81ce21eff9b319, type: 3}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -126,7 +126,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2307134420736924081}
   - component: {fileID: 7929234064607418538}
-  - component: {fileID: 7113233042299471274}
+  - component: {fileID: 922015321360605565}
   m_Layer: 0
   m_Name: StoneResourceNode 1
   m_TagString: Untagged
@@ -163,7 +163,7 @@ SphereCollider:
   serializedVersion: 2
   m_Radius: 6.7031784
   m_Center: {x: -0.12835026, y: 3.5072613, z: 0.29637623}
---- !u!114 &7113233042299471274
+--- !u!114 &922015321360605565
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -172,7 +172,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 2307134420736924094}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a80f2af4a3eff45939502f0d5a26b535, type: 3}
+  m_Script: {fileID: 11500000, guid: 74ea5c077dc4d2e4da3ebb75b93a3a1b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  resourceType: {fileID: 11400000, guid: 04f71d09d55974f3e9e30745e9e1a3b7, type: 2}
+  type: {fileID: 11400000, guid: 04f71d09d55974f3e9e30745e9e1a3b7, type: 2}

@@ -6,11 +6,13 @@ public class MoveAction : BaseAction
 {
     private Vector3 targetPos;
     private Unit unit;
-    private float moveSpeed = 5f;
+    private float moveSpeed = 2f;
     private Vector3 moveDirection;
     private PlayGrid playGrid;
     private Queue<GridPosition> gridTargets = new();
     private List<GridPosition> paths = new();
+    private Pathfinding pathfinding;
+
 
     bool setNextTarget = false;
 
@@ -35,6 +37,8 @@ public class MoveAction : BaseAction
         {
             moveDirection = (targetPos - transform.position).normalized;
             transform.position += moveSpeed * Time.deltaTime * moveDirection;
+
+            unit.animatorController.SetBool("isWalking", true);
         }
         else
         {
@@ -47,44 +51,67 @@ public class MoveAction : BaseAction
         if (gridTargets.Count > 0 && setNextTarget)
         {
             var gridTarget = gridTargets.Dequeue();
-            targetPos = playGrid.GetWorldPosition(gridTarget);
+            if (pathfinding.IsNodeWalkable(gridTarget))
+            {
+                targetPos = playGrid.GetWorldPosition(gridTarget);
+                setNextTarget = false;
 
-            setNextTarget = false;
+                //when target is set -> set current grid pos for unit
+                playGrid.ItemMoveGridPosition(unit, unit.CurGridPos, gridTarget);
+                pathfinding.ItemMoveGridPosition(unit, unit.CurGridPos, gridTarget);
+                unit.SetCurrentGridPos(gridTarget);
+            }
+            else
+            {
+                Cancel();
+            }
+        }
+        else if (gridTargets.Count == 0)
+        {
+            unit.animatorController.SetBool("isWalking", false);
         }
     }
 
     public void SetPath(List<GridPosition> positionTargets)
     {
-        foreach (var position in positionTargets)
+        if (positionTargets == null) 
         {
-            gridTargets.Enqueue(position);
+            Debug.Log(":::Can't find path???");
+            return;
+        }
+        
+        for (int i = 1; i < positionTargets.Count; i++)
+        {
+            gridTargets.Enqueue(positionTargets[i]);
         }
     }
 
-    public void MoveAhead(Pathfinding pathfinding)
+    public void TakeAction(Pathfinding pathfinding)
     {
-        GridPosition destination = GetLastGridInRow(unit.CurGridPos.z);
+        this.pathfinding = pathfinding;
+        GridPosition destination = GetDestination(unit.CurGridPos);
+        Debug.Log(":::Destination set: " + destination.x + ", " + destination.z);
         paths = pathfinding.FindPath(unit.CurGridPos, destination);
 
         SetPath(paths);
-
-        unit.animatorController.SetBool("isWalking", true);
     }
 
-    public void MoveUp()
+    public GridPosition GetDestination(GridPosition curGridPos)
     {
-        
-    }
-
-    public GridPosition GetLastGridInRow(int row)
-    {
-        return playGrid.GetLastGridInRow(row);
+        //get the farthest available tile in row
+        for (int i = playGrid.gridStats.gridWidth - 1; i > curGridPos.x; i--)
+        {
+            GridPosition gridPos = new GridPosition(i, curGridPos.z);
+            if (pathfinding.GetNode(gridPos).IsWalkable())
+            {
+                return gridPos;
+            }
+        }
+        return curGridPos;
     }
 
     public void Cancel()
     {
         gridTargets.Clear();
-        unit.animatorController.SetBool("isWalking", false);
     }
-
 }

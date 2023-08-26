@@ -35,6 +35,23 @@ public class Pathfinding : GridBase
         GetNode(gridPos).SetItem(item);
     }
 
+    public void RemoveItemAtGrid(GridPosition gridPos)
+    {
+        GetNode(gridPos).SetItem(null);
+    }
+
+    public void ItemMoveGridPosition(InteractableItem item, GridPosition fromGridPos, GridPosition toGridPos)
+    {
+        RemoveItemAtGrid(fromGridPos);
+        SetItemAtGrid(item, toGridPos);
+    }
+
+    public bool IsNodeWalkable(GridPosition gridPos)
+    {
+        Debug.Log(GetNode(gridPos).IsWalkable());
+        return GetNode(gridPos).IsWalkable();
+    }
+
     //a-star algorithm
     public List<GridPosition> FindPath(GridPosition startPos, GridPosition endPos)
     {
@@ -103,8 +120,10 @@ public class Pathfinding : GridBase
 
     private List<GridPosition> CalculatePath(PathNode endNode)
     {
-        List<PathNode> path = new();
-        path.Add(endNode);
+        List<PathNode> path = new()
+        {
+            endNode
+        };
 
         while (endNode.CameFromNode != null)
         {

@@ -86,7 +86,7 @@ public class GameplayController : MonoBehaviour
                 (itemToPlaceInfo.prefab,
                 playGrid.GetWorldPosition(gridPos), Quaternion.identity);
 
-            item.SetGridData(playGrid);
+            item.SetGridData(playGrid, pathFindingGrid);
             CheckItemOnPlace(item);
         }
         return true;

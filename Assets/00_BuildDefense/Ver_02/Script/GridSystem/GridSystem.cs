@@ -69,9 +69,4 @@ public class GridSystem<TGridItem>
             && 0 <= gridPos.z 
             && gridPos.z <= gridHeight-1;
     }
-
-    public GridPosition GetLastGridPosInRow(int row)
-    {
-        return new GridPosition(gridWidth-1, row);
-    }
 }

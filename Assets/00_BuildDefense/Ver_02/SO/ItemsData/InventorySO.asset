@@ -13,6 +13,8 @@ MonoBehaviour:
   m_Name: InventorySO
   m_EditorClassIdentifier: 
   interactableItemList:
-  - {fileID: 11400000, guid: b99e762ca8f040e428cedbb0ac5652ca, type: 2}
-  - {fileID: 11400000, guid: e5962ab22027aea499148ea8ea77c0cc, type: 2}
-  - {fileID: 11400000, guid: 63a7ff77c665ff7468319557800c8b21, type: 2}
+  - {fileID: 11400000, guid: 6ddf2287cd1235f48bf3e103fbdeaa67, type: 2}
+  - {fileID: 11400000, guid: 6ddf2287cd1235f48bf3e103fbdeaa67, type: 2}
+  - {fileID: 11400000, guid: 6ddf2287cd1235f48bf3e103fbdeaa67, type: 2}
+  - {fileID: 11400000, guid: 6ddf2287cd1235f48bf3e103fbdeaa67, type: 2}
+  - {fileID: 11400000, guid: 6ddf2287cd1235f48bf3e103fbdeaa67, type: 2}

@@ -7,28 +7,22 @@ public class Unit : InteractableItem
 {
     BaseAction[] actionArrays;
     public Animator animatorController;
+    private Pathfinding pathfindingGrid;
 
     private void Start()
     {
         actionArrays = GetComponents<BaseAction>();
     }
 
-    private void Update()
+    public void SetCurrentGridPos(GridPosition newGridPos)
     {
-        GridPosition newGridPos = playGrid.GetGridPosition(transform.position);
-
-        if (newGridPos != curGridPos)
-        {
-            playGrid.ItemMoveGridPosition(this, curGridPos, newGridPos);
-            curGridPos = newGridPos;
-
-            //testing.SetStartingPoint(curGridPos);
-        }
+        curGridPos = newGridPos;
     }
 
-    public override void SetGridData(PlayGrid gridSystem)
+    public override void SetGridData(PlayGrid gridSystem, Pathfinding pathGrid = null)
     {
         base.SetGridData(gridSystem);
+        pathfindingGrid = pathGrid;
         Debug.Log(":::Unit placed");
     }
 

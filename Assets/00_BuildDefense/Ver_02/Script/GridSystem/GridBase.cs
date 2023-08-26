@@ -4,7 +4,7 @@ using UnityEngine;
 
 public abstract class GridBase : MonoBehaviour
 {
-    [SerializeField] protected GridStats gridStats;
+    public GridStats gridStats;
 
     protected void InitialSetUp()
     {
