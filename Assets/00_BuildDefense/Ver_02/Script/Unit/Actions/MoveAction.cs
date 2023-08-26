@@ -6,7 +6,7 @@ public class MoveAction : BaseAction
 {
     private Vector3 targetPos;
     private Unit unit;
-    private float moveSpeed = 2f;
+    [SerializeField] private float moveSpeed = 2f;
     private Vector3 moveDirection;
     private PlayGrid playGrid;
     private Queue<GridPosition> gridTargets = new();
@@ -90,9 +90,10 @@ public class MoveAction : BaseAction
     {
         this.pathfinding = pathfinding;
         GridPosition destination = GetDestination(unit.CurGridPos);
-        Debug.Log(":::Destination set: " + destination.x + ", " + destination.z);
-        paths = pathfinding.FindPath(unit.CurGridPos, destination);
 
+        Debug.Log(":::Destination set: " + destination.x + ", " + destination.z);
+        
+        paths = pathfinding.FindPath(unit.CurGridPos, destination);
         SetPath(paths);
     }
 

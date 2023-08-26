@@ -48,7 +48,6 @@ public class Pathfinding : GridBase
 
     public bool IsNodeWalkable(GridPosition gridPos)
     {
-        Debug.Log(GetNode(gridPos).IsWalkable());
         return GetNode(gridPos).IsWalkable();
     }
 
